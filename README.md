@@ -36,6 +36,9 @@ $ npm run lint
 <br>
 
 ## Considerations
+ - components self contained: code, custom hooks, styles, tests
+ - functional components Vs class components
+ - custom hooks to separate logic from UI
 
 ## CI pipeline
 
