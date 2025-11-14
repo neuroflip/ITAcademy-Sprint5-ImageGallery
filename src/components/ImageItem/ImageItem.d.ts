@@ -1,6 +1,6 @@
 type ImageItemProps = {
   imagePath: string,
-  isFeaturedImage: boolean
+  order: number
 }
 
 export { ImageItemProps };

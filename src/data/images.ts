@@ -1,7 +1,7 @@
 const generateImageData = (totalImages: number, width: number, height: number): Array<string> => {
     const data: Array<string> = [];
 
-    for(let i=1; i<totalImages; i++) {
+    for(let i=0; i<totalImages; i++) {
         data.push(`https://picsum.photos/id/${i}/${width}/${height}`)
     };
 

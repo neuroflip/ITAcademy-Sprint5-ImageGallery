@@ -9,7 +9,7 @@ const Gallery = ({ images }: GalleryProps) => {
 
   return <div className="gallery">
         { imagesData.map((path, index) => (
-            <ImageItem key={path} imagePath={path} isFeaturedImage={index === 0} />
+            <ImageItem key={path} imagePath={path} order={index} />
         )) }
     </div>
 }
