@@ -1,4 +1,4 @@
-import './styles/Gallery.scss';
+import './styles/Gallery.css';
 
 import * as React from 'react';
 import type { GalleryProps } from './Gallery.d';
