@@ -1,5 +1,6 @@
 type ImageItemProps = {
-  imagePath: string
+  imagePath: string,
+  isFeaturedImage: boolean
 }
 
 export { ImageItemProps };

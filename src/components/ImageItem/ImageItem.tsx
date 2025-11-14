@@ -3,14 +3,17 @@ import type { ImageItemProps } from './ImageItem.d';
 
 import './styles/ImageItem.scss';
 
-const ImageItem = ({ imagePath }: ImageItemProps) => {
+const ImageItem = ({ imagePath, isFeaturedImage }: ImageItemProps) => {
   const [isSelected, setIsSelected] = React.useState(false);
+  const [ isFeatured ] = React.useState(isFeaturedImage);
 
   const imageOnClickHandler = () => {
     setIsSelected(!isSelected);
   };
 
-  return <div className={`imageItem__container ${isSelected ? 'selected' : ''}`} 
+  const className = `imageItem__container ${isSelected ? 'selected' : ''} ${isFeatured ? 'featured' : ''}`;
+
+  return <div className={className} 
       onClick={imageOnClickHandler}>
     <img src={ imagePath } />
   </div>
