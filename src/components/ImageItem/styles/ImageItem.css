@@ -1,0 +1,16 @@
+.imageItem__container {
+  margin: 0.5rem;
+  border: 2px solid transparent;
+
+  &.selected {
+    border: 2px solid red;
+  }
+}
+
+.imageItem__container--image {
+  box-sizing: border-box;
+  width: 10rem;
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

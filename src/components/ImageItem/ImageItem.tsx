@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { ImageItemProps } from './ImageItem.d';
 
-import './styles/ImageItem.scss';
+import './styles/ImageItem.css';
 
 const ImageItem = ({ imagePath, order }: ImageItemProps) => {
   const [ isSelected, setIsSelected ] = React.useState(false);

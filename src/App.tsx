@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 
 import Gallery from './components/Gallery/Gallery';
 import { data } from './data/images';
