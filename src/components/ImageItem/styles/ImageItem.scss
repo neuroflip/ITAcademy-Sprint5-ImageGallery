@@ -2,10 +2,12 @@
   margin: 0.5rem;
   border: 2px solid transparent;
 
-  img {
+  .imageItem__container--image {
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    width: 10rem;
+    height: 20rem;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   &.selected {

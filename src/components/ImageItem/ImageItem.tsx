@@ -12,10 +12,13 @@ const ImageItem = ({ imagePath, isFeaturedImage }: ImageItemProps) => {
   };
 
   const className = `imageItem__container ${isSelected ? 'selected' : ''} ${isFeatured ? 'featured' : ''}`;
+  const style = {
+    backgroundImage: `url(${imagePath})`
+  };
 
   return <div className={className} 
       onClick={imageOnClickHandler}>
-    <img src={ imagePath } />
+    <div className='imageItem__container--image' style={style}></div>
   </div>
 }
 
