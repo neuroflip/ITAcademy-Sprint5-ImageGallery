@@ -1,0 +1,14 @@
+.imageItem__container {
+  border-color: none;
+  max-width: 400px;
+  min-width: 200px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &.selected {
+    border: 2px solid red;
+  }
+}
