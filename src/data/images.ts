@@ -1,7 +1,7 @@
-import type { ImagesSrcSets } from './images.d';
+import type { ImagesData } from './images.d';
 
-const generateImageData = (totalImages: number): Array<ImagesSrcSets> => {
-    const data: Array<ImagesSrcSets> = [];
+const generateImageData = (totalImages: number): Array<ImagesData> => {
+    const data: Array<ImagesData> = [];
     const initialImage = Math.floor(Math.random() * 50);
 
     for(let i = initialImage; i < initialImage + totalImages; i++) {

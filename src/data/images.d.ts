@@ -8,4 +8,4 @@ type ImagesData = {
     alt: string
 }
 
-export  { ImagesSrcSets };
+export  { ImagesData };
