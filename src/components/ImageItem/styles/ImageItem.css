@@ -13,7 +13,7 @@
 
   .imageItem__container--featured {
       @apply col-span-2 row-span-2;
-      @apply after:text-white after:content-["featured"] after:absolute after:right-0 after:top-0 after:p-1 after:m-3 after:rounded-md after:bg-gray-500
+      @apply after:text-white after:content-["featured"] after:absolute after:right-0 after:top-0 after:p-1 after:m-3 after:rounded-md after:bg-gray-800
   }
 
   .imageItem__image {

@@ -10,7 +10,7 @@ const ImageItem = ({ imageSrcSet, order, isFeatured }: ImageItemProps) => {
 
   return <div className={ containerClassName } onClick={ imageOnClickHandler }>
     <img src={ isFeatured ? imageSrcSet.imageSizes.large : imageSrcSet.imageSizes.small }
-      loading="lazy" decoding="async" alt={ imageSrcSet.alt } className="imageItem__image" />
+      tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageSrcSet.alt } className="imageItem__image" />
   </div>
 }
 
