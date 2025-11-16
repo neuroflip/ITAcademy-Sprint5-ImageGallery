@@ -1,6 +1,15 @@
+import type { ImagesSrcSets } from "@/data/images.d";
+
 type ImageItemProps = {
-  imagePath: string,
-  order: number
+  imageSrcSet: ImagesSrcSets,
+  order: number,
+  isFeatured: boolean
 }
 
-export { ImageItemProps };
+enum ImageSize {
+  Small = 0,
+  Mid,
+  Large
+}
+
+export { ImageItemProps, ImageSize };

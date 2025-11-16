@@ -1,28 +1,26 @@
 import * as React from 'react';
 import type { ImageItemProps } from './ImageItem.d';
+import { ImageSize } from './ImageItem.d';
 
 import './styles/ImageItem.css';
+import useImageItem from './hooks/ImageItem';
 
-const ImageItem = ({ imagePath, order }: ImageItemProps) => {
+const SMALL_IMAGE_MEDIA = "(width < 40rem)";
+const MID_IMAGE_MEDIA = "(width >= 40rem) and (width <= 64rem)";
+const LARGE_IMAGE_MEDIA = "(width > 64rem)";
+
+const ImageItem = ({ imageSrcSet, order, isFeatured }: ImageItemProps) => {
   const [ isSelected, setIsSelected ] = React.useState(false);
-  const [ isFeatured ] = React.useState(order === 0);
+  const [ imageOnClickHandler, getSrcSet, containerClassName ] = useImageItem(isSelected, isFeatured, order, setIsSelected, imageSrcSet);
 
-  const imageOnClickHandler = () => {
-    setIsSelected(!isSelected);
-  };
-
-  const className = `imageItem__container ${ isSelected ? 'selected' : '' } ${ isFeatured ? 'featured' : '' }`;
-  const imageStyle = {
-    backgroundImage: `url(${imagePath})`
-  };
-
-  const containerStyle = {
-    order: order
-  };
-
-  return <div className={ className } style={ containerStyle }
-      onClick={ imageOnClickHandler }>
-    <div className='imageItem__container--image' style={ imageStyle }></div>
+  return <div className={ containerClassName } onClick={ imageOnClickHandler }>
+    <picture>
+      <source media={ SMALL_IMAGE_MEDIA } srcSet={ getSrcSet(isFeatured, ImageSize.Small) } />
+      <source media={ MID_IMAGE_MEDIA } srcSet={ getSrcSet(isFeatured, ImageSize.Mid) } />
+      <source media={ LARGE_IMAGE_MEDIA } srcSet={ getSrcSet(isFeatured, ImageSize.Large) } />
+      <img src={ imageSrcSet.large } loading="lazy" decoding="async" 
+        className="imageItem__image" />
+    </picture>        
   </div>
 }
 
