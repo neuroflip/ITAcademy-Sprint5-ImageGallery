@@ -1,7 +1,11 @@
-type ImagesSrcSets = {
+type ImageSizes = {
     small: string,
-    mid: string,
     large: string
+}
+
+type ImagesData = {
+    imageSizes: ImageSizes 
+    alt: string
 }
 
 export  { ImagesSrcSets };

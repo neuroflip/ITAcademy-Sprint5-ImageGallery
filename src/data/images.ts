@@ -5,17 +5,19 @@ const generateImageData = (totalImages: number): Array<ImagesSrcSets> => {
     const initialImage = Math.floor(Math.random() * 50);
 
     for(let i = initialImage; i < initialImage + totalImages; i++) {
-        data.push(buildSrcSetForImage(`https://picsum.photos/id/${i}/`))
+        data.push(buildSrcSetForImage(`https://picsum.photos/id/${i}/`, i))
     };
 
     return data;
 }
 
-const buildSrcSetForImage = (url: string) => {
+const buildSrcSetForImage = (url: string, i: number) => {
     return {
-        'small': `${url}300/200.webp`,
-        'mid': `${url}600/400.webp`,
-        'large': `${url}1200/800.webp`,
+        "imageSizes": {
+            "small": `${url}495/330.webp`,
+            "large": `${url}705/470.webp`,
+        },
+        "alt": `Image number ${i} from Lorem Picsum repository of stock images`
     }
 }
 

@@ -10,7 +10,8 @@ const Gallery = ({ images }: GalleryProps) => {
 
   return <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
         { imagesData.map((srcSet, index) => (
-            <ImageItem key={srcSet.small} imageSrcSet={srcSet} order={index} isFeatured={index === 0}/>
+            <ImageItem key={ srcSet.imageSizes.small } imageSrcSet={ srcSet } 
+                order={ index } isFeatured={ index === 0 }/>
         )) }
     </div>
 }
