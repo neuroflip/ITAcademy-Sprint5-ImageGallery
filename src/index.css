@@ -1,14 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background-color: #edf2f7;
-  --foreground-color: #000;
-
   font-family: Work Sans, sans-serif;
   font-weight: 400;
 
-  color: --foreground-color;
-  background-color: --background-color;
+  color: --color-foreground;
+  background-color: --color-background;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,4 +23,9 @@ body {
 
 h1 {
   font-size: 2rem;
+}
+
+@theme {
+  --color-background: #edf2f7;
+  --color-foreground: #000;
 }

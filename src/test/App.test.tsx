@@ -1,6 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react'
 import App from '../App';
+
+vi.mock('../components/Gallery/Gallery', () => ({
+  default: vi.fn(()=>`<div></div>`)
+}))
 
 describe('App', () => {
   it('renders app component', () => {

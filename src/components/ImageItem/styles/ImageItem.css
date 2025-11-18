@@ -3,7 +3,7 @@
 @layer components {
   .imageItem__container {
       @apply rounded-xl overflow-hidden shadow-2xl relative;
-      @apply border-(--background-color) border-4 border-solid transition-transform;
+      @apply border-(--color-background) border-4 border-solid transition-transform;
       @apply hover:scale-103;
   }
 
@@ -13,7 +13,7 @@
 
   .imageItem__container--featured {
       @apply col-span-2 row-span-2;
-      @apply after:text-white after:absolute after:right-0 after:top-0 after:p-1 after:m-3 after:rounded-md after:bg-gray-800
+      @apply after:text-white after:absolute after:right-0 after:top-0 after:p-1 after:m-2 after:rounded-md after:bg-gray-800
   }
 
   .imageItem__container--featured:after {
@@ -27,5 +27,10 @@
 
   .imageItem__container img:focus {
     @apply border-8 border-red-600;
+  }
+
+  .imageItem__Button--delete {
+    @apply absolute bottom-2 right-2 z-10;
+    @apply text-xs;
   }
 }
