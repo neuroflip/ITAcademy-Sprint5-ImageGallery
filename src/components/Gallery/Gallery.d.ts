@@ -1,7 +1,7 @@
-import type { ImagesSrcSets } from "@/data/images.d";
+import type { ImagesData } from "@/data/images.d";
 
 type GalleryProps = {
-    images: Array<ImagesSrcSets>
+    images: Array<ImagesData>
 }
 
 export { GalleryProps };

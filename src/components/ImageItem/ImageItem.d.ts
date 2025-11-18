@@ -1,9 +1,10 @@
-import type { ImagesSrcSets } from "@/data/images.d";
+import type { ImagesData } from "@/data/images.d";
 
 type ImageItemProps = {
-  imageSrcSet: ImagesSrcSets,
+  imageData: ImagesData,
   order: number,
-  isFeatured: boolean
+  isFeatured: boolean,
+  onDelete: (id: string) => void
 }
 
 enum ImageSize {

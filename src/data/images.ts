@@ -5,14 +5,15 @@ const generateImageData = (totalImages: number): Array<ImagesData> => {
     const initialImage = Math.floor(Math.random() * 50);
 
     for(let i = initialImage; i < initialImage + totalImages; i++) {
-        data.push(buildSrcSetForImage(`https://picsum.photos/id/${i}/`, i))
+        data.push(buildImageData(`https://picsum.photos/id/${i}/`, i))
     };
 
     return data;
 }
 
-const buildSrcSetForImage = (url: string, i: number) => {
+const buildImageData = (url: string, i: number) => {
     return {
+        "id": String(i),
         "imageSizes": {
             "small": `${url}495/330.webp`,
             "large": `${url}705/470.webp`,
