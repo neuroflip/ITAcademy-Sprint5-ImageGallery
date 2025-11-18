@@ -13,7 +13,7 @@ const generateImageData = (totalImages: number): Array<ImagesData> => {
 
 const buildImageData = (url: string, i: number) => {
     return {
-        "id": String(i),
+        "order": String(i),
         "imageSizes": {
             "small": `${url}495/330.webp`,
             "large": `${url}705/470.webp`,

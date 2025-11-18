@@ -5,6 +5,15 @@
       @apply rounded-xl overflow-hidden shadow-2xl relative;
       @apply border-(--color-background) border-4 border-solid transition-transform;
       @apply hover:scale-103;
+      @apply opacity-100;
+  }
+
+  .imageItem__container--dragging {
+    @apply opacity-40;
+  }
+
+  .imageItem__container--dragOver {
+    @apply border-b-fuchsia-500 border-8;
   }
 
   .imageItem__container--selected {
