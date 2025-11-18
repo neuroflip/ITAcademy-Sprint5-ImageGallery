@@ -1,14 +1,26 @@
-const generateImageData = (totalImages: number, width: number, height: number): Array<string> => {
-    const data: Array<string> = [];
+import type { ImagesData } from './images.d';
 
-    for(let i=0; i<totalImages; i++) {
-        data.push(`https://picsum.photos/id/${i}/${width}/${height}`)
+const generateImageData = (totalImages: number): Array<ImagesData> => {
+    const data: Array<ImagesData> = [];
+    const initialImage = Math.floor(Math.random() * 50);
+
+    for(let i = initialImage; i < initialImage + totalImages; i++) {
+        data.push(buildSrcSetForImage(`https://picsum.photos/id/${i}/`, i))
     };
 
     return data;
 }
 
-const data = generateImageData(10, 200, 300);
+const buildSrcSetForImage = (url: string, i: number) => {
+    return {
+        "imageSizes": {
+            "small": `${url}495/330.webp`,
+            "large": `${url}705/470.webp`,
+        },
+        "alt": `Image number ${i} from Lorem Picsum repository of stock images`
+    }
+}
+
+const data = generateImageData(32);
 
 export { data };
-

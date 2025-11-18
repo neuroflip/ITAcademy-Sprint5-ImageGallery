@@ -1,10 +1,14 @@
+@import "tailwindcss";
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  --background-color: #edf2f7;
+  --foreground-color: #000;
+
+  font-family: Work Sans, sans-serif;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: --foreground-color;
+  background-color: --background-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,4 +22,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
 }
