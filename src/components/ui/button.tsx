@@ -57,4 +57,6 @@ function Button({
   )
 }
 
+//https://github.com/shadcn-ui/ui/issues/7736
+// eslint-disable-next-line react-refresh/only-export-components
 export { Button, buttonVariants }
