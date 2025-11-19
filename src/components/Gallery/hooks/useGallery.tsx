@@ -21,12 +21,12 @@ const useGallery = (images: ImagesData[]):
             }
         }
 
-        const onDrop = (imagesData: ImagesData[], setImagesData: React.Dispatch<React.SetStateAction<ImagesData[]>>, 
+        const onDrop = (imagesData: Array<ImagesData>, setImagesData: React.Dispatch<React.SetStateAction<ImagesData[]>>, 
             currentDropElement: HTMLElement, destinationElement: HTMLElement) => {
+                const newImagesData = [...imagesData];
                 const destinationPositionId = Number(destinationElement.dataset.image);
                 const originalPositionId = Number(currentDropElement.dataset.image);
                 const findImageById = (id1: number, id2: number) => id1 === id2;
-                const newImagesData = [...imagesData];
                 const currentDropImageData = newImagesData.find((element) => findImageById(element.id, originalPositionId));
                 const destinationImageData = newImagesData.find((element) => findImageById(element.id, destinationPositionId));
 
@@ -36,10 +36,9 @@ const useGallery = (images: ImagesData[]):
                 if (currentDropImageData && destinationImageData) {
                     const originPosition = newImagesData.indexOf(currentDropImageData);
                     const destPosition = newImagesData.indexOf(destinationImageData);
-
                     const element = newImagesData.splice(originPosition, 1);
-                    newImagesData.splice(destPosition, 0, element[0]);
 
+                    newImagesData.splice(destPosition, 0, element[0]);
                     setImagesData(newImagesData);
                 }
         }

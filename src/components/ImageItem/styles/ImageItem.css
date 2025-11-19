@@ -2,8 +2,8 @@
 
 @layer components {
   .imageItem__container {
-      @apply rounded-xl overflow-hidden shadow-2xl relative;
-      @apply border-(--color-background) border-4 border-solid transition-transform;
+      @apply rounded-xl overflow-hidden shadow-xl relative;
+      @apply box-content transition-transform;
       @apply hover:scale-103;
       @apply opacity-100;
   }
@@ -26,7 +26,7 @@
   }
 
   .imageItem__container--featured:after {
-    content: "featured" / "This is the featured image, the first image in the gallery";
+    content: "featured" / "Featured image in gallery";
   }
 
   .imageItem__image {
