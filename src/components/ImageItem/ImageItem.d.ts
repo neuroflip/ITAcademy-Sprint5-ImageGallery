@@ -6,9 +6,7 @@ type ImageItemProps = {
   onDelete: (id: number) => void,
   onDrop: (destinationElement: HTMLElement) => void,
   onStartDrag: (imageElement: HTMLElement) => void,
-  onEndDrag: (imageElement: HTMLElement) => void,
-  onDragOver: (imageElement: HTMLElement) => void,
-  onDragLeave: (imageElement: HTMLElement) => void
+  onEndDrag: () => void
 }
 
 enum ImageSize {
