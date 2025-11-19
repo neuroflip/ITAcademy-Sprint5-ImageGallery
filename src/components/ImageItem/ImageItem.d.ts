@@ -2,10 +2,9 @@ import type { ImagesData } from "@/data/images.d";
 
 type ImageItemProps = {
   imageData: ImagesData,
-  order: number,
   isFeatured: boolean,
-  onDelete: (id: string) => void,
-  onDrop: (originElement: HTMLElement, destinationElement: HTMLElement) => void,
+  onDelete: (id: number) => void,
+  onDrop: (destinationElement: HTMLElement) => void,
   onStartDrag: (imageElement: HTMLElement) => void,
   onEndDrag: (imageElement: HTMLElement) => void,
   onDragOver: (imageElement: HTMLElement) => void,

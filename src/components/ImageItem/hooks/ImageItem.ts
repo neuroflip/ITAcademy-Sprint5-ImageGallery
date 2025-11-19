@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from 'react'
 
-const useImageItem = (id: string, isSelected: boolean, isFeatured: boolean, order: number,
-    setIsSelected: React.Dispatch<React.SetStateAction<boolean>>, onDelete: (id: string) => void): 
+const useImageItem = (id: number, isSelected: boolean, isFeatured: boolean,
+    setIsSelected: React.Dispatch<React.SetStateAction<boolean>>, onDelete: (id: number) => void): 
     [ () => void, MouseEventHandler<HTMLDivElement>, string] => {
     
     const imageOnClickHandler = () => {
@@ -14,8 +14,7 @@ const useImageItem = (id: string, isSelected: boolean, isFeatured: boolean, orde
 
     const containerClassName = `imageItem__container`+ 
         `${ isSelected ? ' imageItem__container--selected' : '' } `+
-        `${ isFeatured ? ' imageItem__container--featured' : ''}` +
-        ` order-${order+1}`
+        `${ isFeatured ? ' imageItem__container--featured' : ''}`
 
     return [ deleteEventHandler, imageOnClickHandler, containerClassName ]
 }
