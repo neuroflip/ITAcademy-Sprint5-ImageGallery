@@ -2,14 +2,14 @@
 
 @layer components {
   .imageItem__container {
-      @apply rounded-xl overflow-hidden shadow-xl relative;
-      @apply box-content transition-transform;
-      @apply hover:scale-103;
-      @apply opacity-100;
+    @apply rounded-xl overflow-hidden shadow-xl relative;
+    @apply box-content transition-transform;
+    @apply hover:scale-103 opacity-100;
+    @apply cursor-grab;
   }
 
   .imageItem__container--dragging {
-    @apply opacity-40;
+    @apply opacity-40 cursor-grabbing;
   }
 
   .imageItem__container--dragOver {
@@ -17,7 +17,7 @@
   }
 
   .imageItem__container--selected {
-      @apply border-solid border-amber-600;
+      @apply border-solid border-amber-600 border-4;
   }
 
   .imageItem__container--featured {
