@@ -7,14 +7,28 @@ const useGallery = (images: ImagesData[]):
         const [ imagesData, setImagesData ] = React.useState<Array<ImagesData>>(images);
         const [ currentDropElement, setCurrentDropElement ] = React.useState<HTMLElement | null>()
 
+        const onStartDrag = (imageElement: HTMLElement) => {
+            setCurrentDropElement(imageElement);
+        }
+
+        const onEndDrag = () => {
+            setCurrentDropElement(null);
+        }
+
+        const dropEventHandler = (destinationElement: HTMLElement) => {        
+            if (currentDropElement) {
+                onDrop(imagesData, setImagesData, currentDropElement, destinationElement);
+            }
+        }
+
         const onDrop = (imagesData: ImagesData[], setImagesData: React.Dispatch<React.SetStateAction<ImagesData[]>>, 
             currentDropElement: HTMLElement, destinationElement: HTMLElement) => {
-                const destinationPositionId = Number(destinationElement.getAttribute('id')?.replace('container', ''));
-                const originalPositionId = Number(currentDropElement?.id.replace('container', ''));
-
+                const destinationPositionId = Number(destinationElement.dataset.image);
+                const originalPositionId = Number(currentDropElement.dataset.image);
+                const findImageById = (id1: number, id2: number) => id1 === id2;
                 const newImagesData = [...imagesData];
-                const currentDropImageData = newImagesData.find((element) => element.id === originalPositionId);
-                const destinationImageData = newImagesData.find((element) => element.id === destinationPositionId);
+                const currentDropImageData = newImagesData.find((element) => findImageById(element.id, originalPositionId));
+                const destinationImageData = newImagesData.find((element) => findImageById(element.id, destinationPositionId));
 
                 destinationElement?.classList.remove("imageItem__container--dragOver");
                 destinationElement?.parentElement?.classList.remove("imageItem__container--dragOver");
@@ -28,20 +42,6 @@ const useGallery = (images: ImagesData[]):
 
                     setImagesData(newImagesData);
                 }
-        }
-
-        const onStartDrag = (imageElement: HTMLElement) => {
-            setCurrentDropElement(imageElement);
-        }
-
-        const onEndDrag = () => {
-            setCurrentDropElement(null);
-        }
-
-        const dropEventHandler = (destinationElement: HTMLElement) => {        
-            if (currentDropElement) {
-                onDrop(imagesData, setImagesData, currentDropElement, destinationElement);
-            }
         }
 
         const onDelete = (id: number) => {

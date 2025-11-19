@@ -13,7 +13,7 @@ const ImageItem = ({ imageData, isFeatured, onDelete, onDrop, onStartDrag, onEnd
         dragOverEventHandler, dragLeaveEventHandler
       ] = useImageItem(imageData.id, isFeatured, onDelete, onDrop, onStartDrag, onEndDrag);
 
-  return <div id={ `container${ imageData.id }` }
+  return <div data-image={ imageData.id.toString() }
     className={ containerClassName } 
     draggable={ false }
     onClick={ imageOnClickHandler } 
@@ -22,14 +22,16 @@ const ImageItem = ({ imageData, isFeatured, onDelete, onDrop, onStartDrag, onEnd
     onDragLeave={ dragLeaveEventHandler }
     onDragStart={ dragStartEventHandler }
     onDragEnd={ dragEndEventHandler }>
-      <img id={ imageData.id.toString() } src={ isFeatured ? imageData.imageSizes.large : imageData.imageSizes.small }
+      <img data-image={ imageData.id.toString() }
+        src={ isFeatured ? imageData.imageSizes.large : imageData.imageSizes.small }
         onDrop={ dropEventHandler }
-        tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageData.alt } className="imageItem__image" />
+        tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageData.alt }
+        className="imageItem__image" />
       <CustomAlertDialog
         title = "Are you absolutely sure?"
         description = "This action cannot be undone. This will permanently delete the image from the Image Gallery."
         alertTriggerElement={ trigglerButton } 
-        confirmElement={ confirmButton }/>
+        confirmElement={ confirmButton } />
     </div>
 }
 
