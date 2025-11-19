@@ -3,8 +3,7 @@ import * as React from 'react';
 const useImageItem = (id: number, isFeatured: boolean, onDelete: (id: number) => void, onDrop: (destinationElement: HTMLElement) => void,
   onStartDrag: (imageElement: HTMLElement) => void,
   onEndDrag: () => void
-): 
-    [ () => void, React.MouseEventHandler<HTMLDivElement>, string,
+): [ () => void, React.MouseEventHandler<HTMLDivElement>, string,
         (event: React.DragEvent<HTMLDivElement>) => void,
         (event: React.DragEvent<HTMLDivElement>) => void,
         (event: React.DragEvent<HTMLDivElement>) => void,
