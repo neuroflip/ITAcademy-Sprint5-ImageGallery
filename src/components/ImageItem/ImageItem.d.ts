@@ -2,9 +2,11 @@ import type { ImagesData } from "@/data/images.d";
 
 type ImageItemProps = {
   imageData: ImagesData,
-  order: number,
   isFeatured: boolean,
-  onDelete: (id: string) => void
+  onDelete: (id: number) => void,
+  onDrop: (destinationElement: HTMLElement) => void,
+  onStartDrag: (imageElement: HTMLElement) => void,
+  onEndDrag: () => void
 }
 
 enum ImageSize {

@@ -2,13 +2,22 @@
 
 @layer components {
   .imageItem__container {
-      @apply rounded-xl overflow-hidden shadow-2xl relative;
-      @apply border-(--color-background) border-4 border-solid transition-transform;
-      @apply hover:scale-103;
+    @apply rounded-xl overflow-hidden shadow-xl relative;
+    @apply box-content transition-transform;
+    @apply hover:scale-103 opacity-100;
+    @apply cursor-grab;
+  }
+
+  .imageItem__container--dragging {
+    @apply opacity-40 cursor-grabbing;
+  }
+
+  .imageItem__container--dragOver {
+    @apply opacity-40;
   }
 
   .imageItem__container--selected {
-      @apply border-solid border-amber-600;
+      @apply border-solid border-amber-600 border-4;
   }
 
   .imageItem__container--featured {
@@ -17,16 +26,12 @@
   }
 
   .imageItem__container--featured:after {
-    content: "featured" / "This is the featured image, the first image in the gallery";
+    content: "featured" / "Featured image in gallery";
   }
 
   .imageItem__image {
     @apply bg-gray-500 bg-contain bg-center box-border w-full h-full aspect-3/2 relative;
     @apply bg-[url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3lyd2R6NG5pZnplYjlleTNkOGx6anhqd3lxMWFmZXNxeDR4NHVwcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uIJBFZoOaifHf52MER/giphy.gif)];
-  }
-
-  .imageItem__container img:focus {
-    @apply border-8 border-red-600;
   }
 
   .imageItem__Button--delete {

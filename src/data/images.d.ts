@@ -4,7 +4,7 @@ type ImageSizes = {
 }
 
 type ImagesData = {
-    id: string,
+    id: number,
     imageSizes: ImageSizes 
     alt: string
 }
