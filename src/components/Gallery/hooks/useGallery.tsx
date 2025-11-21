@@ -48,7 +48,12 @@ const useGallery = (images: Array<ImagesData>):
         const onSelection = (id: number) => {
             const newSelectedImagesIds = new Set(selectedImagesIds);
 
-            newSelectedImagesIds.add(id);
+            if (newSelectedImagesIds.has(id)) {
+                newSelectedImagesIds.delete(id);
+            } else {
+                newSelectedImagesIds.add(id);
+            }
+            
             setSelectedImagesIds(newSelectedImagesIds);
         };
 
