@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-const useImageItem = (id: number, isFeatured: boolean, onDelete: (id: number) => void, onDrop: (destinationElement: HTMLElement) => void,
+const useImageItem = (id: number, isFeatured: boolean, isSelected: boolean, onDelete: (id: number) => void, onDrop: (destinationElement: HTMLElement) => void,
   onStartDrag: (imageElement: HTMLElement) => void,
-  onEndDrag: () => void
+  onEndDrag: () => void, onSelection: (id: number) => void
 ): [ () => void, React.MouseEventHandler<HTMLDivElement>, string,
         (event: React.DragEvent<HTMLDivElement>) => void,
         (event: React.DragEvent<HTMLDivElement>) => void,
@@ -11,9 +11,8 @@ const useImageItem = (id: number, isFeatured: boolean, onDelete: (id: number) =>
         (event: React.DragEvent<HTMLDivElement>) => void
     ] => {
     
-    const [ isSelected, setIsSelected ] = React.useState(false);
-    const imageOnClickHandler = () => {
-        setIsSelected(!isSelected);
+    const imageOnSelectionHandler = () => {
+        onSelection(id);
     };
 
     const deleteEventHandler = () => {
@@ -60,7 +59,7 @@ const useImageItem = (id: number, isFeatured: boolean, onDelete: (id: number) =>
         imageElement?.classList.remove("imageItem__container--dragOver");
     }
     
-    return [ deleteEventHandler, imageOnClickHandler, containerClassName,
+    return [ deleteEventHandler, imageOnSelectionHandler, containerClassName,
         dragStartEventHandler, dragEndEventHandler, dropEventHandler,
         dragOverEventHandler, dragLeaveEventHandler ];
 }

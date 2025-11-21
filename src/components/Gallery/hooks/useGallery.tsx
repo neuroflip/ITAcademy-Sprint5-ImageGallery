@@ -1,11 +1,13 @@
 import * as React from 'react';
 import type { ImagesData } from "@/data/images.d";
 
-const useGallery = (images: ImagesData[]): 
-    [ Array<ImagesData>, (id: number) => void, (imageElement: HTMLElement) => void, 
-      () => void, (imageElement: HTMLElement) => void ] => {
+const useGallery = (images: Array<ImagesData>): 
+    [ Array<ImagesData>, Set<number>, (id: number) => void, 
+        (imageElement: HTMLElement) => void, () => void, (imageElement: HTMLElement) => void,
+        (id: number) => void, () => void, () => void, () => void ] => {
         const [ imagesData, setImagesData ] = React.useState<Array<ImagesData>>(images);
         const [ currentDropElement, setCurrentDropElement ] = React.useState<HTMLElement | null>()
+        const [ selectedImagesIds, setSelectedImagesIds ] = React.useState<Set<number>>(new Set());
 
         const onStartDrag = (imageElement: HTMLElement) => {
             setCurrentDropElement(imageElement);
@@ -21,7 +23,7 @@ const useGallery = (images: ImagesData[]):
             }
         }
 
-        const onDrop = (imagesData: Array<ImagesData>, setImagesData: React.Dispatch<React.SetStateAction<ImagesData[]>>, 
+        const onDrop = (imagesData: Array<ImagesData>, setImagesData: React.Dispatch<React.SetStateAction<Array<ImagesData>>>, 
             currentDropElement: HTMLElement, destinationElement: HTMLElement) => {
                 const newImagesData = [...imagesData];
                 const destinationPositionId = Number(destinationElement.dataset.image);
@@ -43,20 +45,58 @@ const useGallery = (images: ImagesData[]):
                 }
         }
 
-        const onDelete = (id: number) => {
-            const newImagesData = [...imagesData];
-            const image = newImagesData.find((image) => image.id === id);
+        const onSelection = (id: number) => {
+            const newSelectedImagesIds = new Set(selectedImagesIds);
+
+            newSelectedImagesIds.add(id);
+            setSelectedImagesIds(newSelectedImagesIds);
+        };
+
+        const deleteImageFromArray = (array: Array<ImagesData>, id: number) => {
+            const image = array.find((image) => image.id === id);
             if (image) {
-                const index = newImagesData.indexOf(image);
+                const index = array.indexOf(image);
                 
                 if (index !== -1) {
-                    newImagesData.splice(index, 1);
+                    array.splice(index, 1);
                 }
-                setImagesData(newImagesData);
             }
         }
-        
-        return [ imagesData, onDelete, onStartDrag, onEndDrag, dropEventHandler ];
+
+        const onDelete = (id: number) => {
+            const newImagesData = [...imagesData];
+
+            deleteImageFromArray(newImagesData, id);
+            setImagesData(newImagesData);
+        }
+
+        const onSelectAll = () => {
+            const newSelectedImagesIds = new Set<number>();
+
+            imagesData.forEach((image) => {
+                newSelectedImagesIds.add(image.id);
+            });
+            setSelectedImagesIds(newSelectedImagesIds);
+        };
+
+        const onDeselectAll = () => {
+            const newSelectedImagesIds = new Set<number>();
+            
+            setSelectedImagesIds(newSelectedImagesIds);
+        };
+
+        const onDeleteSelected = () => {
+            const newImamgesData = [...imagesData]
+
+            selectedImagesIds.forEach((imageId) => {
+                deleteImageFromArray(newImamgesData, imageId);
+            });
+
+            setImagesData(newImamgesData);
+            setSelectedImagesIds(new Set<number>());
+        };
+
+        return [ imagesData, selectedImagesIds, onDelete, onStartDrag, onEndDrag, dropEventHandler, onSelection, onSelectAll, onDeselectAll, onDeleteSelected ];
 }
 
 export default useGallery;

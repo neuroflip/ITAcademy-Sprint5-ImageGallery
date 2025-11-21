@@ -3,20 +3,20 @@ import type { ImageItemProps } from './ImageItem.d';
 import './styles/ImageItem.css';
 import useImageItem from './hooks/useImageItem';
 import { Button } from "@/components/ui/button"
-import CustomAlertDialog from '../AlertDialog/CustomAlertDialog';
+import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
 
-const ImageItem = ({ imageData, isFeatured, onDelete, onDrop, onStartDrag, onEndDrag }: ImageItemProps) => {
+const ImageItem = ({ imageData, isFeatured, isSelected, onDelete, onDrop, onStartDrag, onEndDrag, onSelection }: ImageItemProps) => {
   const trigglerButton = () => <Button className='imageItem__Button--delete' size="icon-sm" variant="outline">🗑</Button>
   const confirmButton = () => <Button variant="outline" onClick={ deleteEventHandler }>Continue</Button>
-  const [ deleteEventHandler, imageOnClickHandler, containerClassName,
+  const [ deleteEventHandler, imageOnSelectionHandler, containerClassName,
         dragStartEventHandler, dragEndEventHandler, dropEventHandler,
         dragOverEventHandler, dragLeaveEventHandler
-      ] = useImageItem(imageData.id, isFeatured, onDelete, onDrop, onStartDrag, onEndDrag);
+      ] = useImageItem(imageData.id, isFeatured, isSelected, onDelete, onDrop, onStartDrag, onEndDrag, onSelection);
 
   return <div data-image={ imageData.id.toString() }
     className={ containerClassName } 
     draggable={ false }
-    onClick={ imageOnClickHandler } 
+    onClick={ imageOnSelectionHandler } 
     onDrop={ dropEventHandler }
     onDragOver={ dragOverEventHandler }
     onDragLeave={ dragLeaveEventHandler }

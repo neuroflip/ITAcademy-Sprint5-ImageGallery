@@ -7,4 +7,4 @@ type CustomAlertDialogProps = {
   confirmElement: () => JSX.Element
 }
 
-export type{ CustomAlertDialogProps };
+export type { CustomAlertDialogProps };
