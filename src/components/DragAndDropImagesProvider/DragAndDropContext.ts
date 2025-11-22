@@ -12,13 +12,21 @@ type DragAndDropContextProps = {
     onDeleteSelected: () => void
 }
 
+const dummyDragHandler = (element: HTMLElement) => {
+    element = element;
+}
+
+const dummyIdOperation = (id: number) => {
+    id = id;
+}
+
 const DragAndDropContext: Context<DragAndDropContextProps> = createContext({
     selectedImagesIds: new Set(),
-    onStartDrag: (imageElement: HTMLElement) => {},
+    onStartDrag: dummyDragHandler,
     onEndDrag: () => {},
-    onDrop: (destinationElement: HTMLElement) => {},
-    onSelection: (id: number) => {},
-    onDelete: (id: number) => {},
+    onDrop: dummyDragHandler,
+    onSelection: dummyIdOperation,
+    onDelete: dummyIdOperation,
     onSelectAll: () => {},
     onDeselectAll: () => {},
     onDeleteSelected: () => {}

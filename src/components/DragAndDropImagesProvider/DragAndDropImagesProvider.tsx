@@ -11,6 +11,7 @@ const DragAndDropImagesProvider = ({ children }: DragAndDropImagesProviderProps)
     const [ imagesData, setImagesData ] = React.useState<Array<ImagesData>>(data);
     const [ selectedImagesIds, setSelectedImagesIds ] = React.useState<Set<number>>(new Set());
     const [ currentDropElement, setCurrentDropElement ] = React.useState<HTMLElement | null>()
+
     const onStartDrag = (imageElement: HTMLElement) => {
         setCurrentDropElement(imageElement);
     }

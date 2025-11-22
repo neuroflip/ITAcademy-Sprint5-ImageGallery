@@ -11,7 +11,9 @@
       const element = event.target as HTMLElement;
 
       event.stopPropagation();
-      preventDef && event.preventDefault();
+      if(preventDef) {
+        event.preventDefault();
+      }
       callback(element);
       element?.classList.add(className);
   }
@@ -23,7 +25,9 @@
       const element = event.target as HTMLElement;
 
       event.stopPropagation();
-      preventDef && event.preventDefault();
+      if(preventDef){
+        event.preventDefault();
+      } 
       callback(element);
       element?.classList.remove(className);
   }
