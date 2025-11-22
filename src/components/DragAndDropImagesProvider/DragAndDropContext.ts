@@ -13,11 +13,13 @@ type DragAndDropContextProps = {
 }
 
 const dummyDragHandler = (element: HTMLElement) => {
-    element = element;
+    element.classList.add('');
 }
 
 const dummyIdOperation = (id: number) => {
-    id = id;
+    const element = document.getElementById(String(id));
+
+    element?.classList.add('');
 }
 
 const DragAndDropContext: Context<DragAndDropContextProps> = createContext({
