@@ -1,26 +1,24 @@
+import * as React from 'react';
 import type { GalleryProps } from './Gallery.d';
 
 import ImageItem from '../ImageItem/ImageItem';
-import useGallery from './hooks/useGallery';
 import CustomContextMenu from '../ContextualMenu/ContextualMenu';
-
-
+import DragAndDropContext from '../DragAndDropImagesProvider/DragAndDropContext';
 
 const Gallery = ({ images }: GalleryProps) => {
-    const [ imagesData, selectedImagesIds, onDelete, onStartDrag, onEndDrag, dropEventHandler, onSelection,
-        onSelectAll, onDeselectAll, onDeleteSelected ] = useGallery(images);
-
+    const { selectedImagesIds, onStartDrag, onEndDrag, onDrop, onSelection, onDelete,
+            onSelectAll, onDeselectAll, onDeleteSelected } = React.useContext(DragAndDropContext);
     return <>   
         <CustomContextMenu triggerElement={ 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                { imagesData.length > 0 ? [...imagesData].map((imageData, index) => (
+                { images && images.length > 0 ? [...images].map((imageData, index) => (
                     <ImageItem key={ imageData.imageSizes.small }
                         imageData={ imageData }
                         isFeatured={ index === 0 }
                         isSelected={ selectedImagesIds.has(imageData.id) }
                         onStartDrag={ onStartDrag }
                         onEndDrag={ onEndDrag }
-                        onDrop={ dropEventHandler }
+                        onDrop={ onDrop }
                         onDelete={ onDelete }
                         onSelection={ onSelection } />
                 )) :

@@ -1,30 +1,31 @@
-import type { ImageItemProps } from './ImageItem.d';
+import * as React from 'react';
 
-import './styles/ImageItem.css';
-import useImageItem from './hooks/useImageItem';
+import type { ImageItemProps } from './ImageItem.d';
 import ImageButton from '../ImageButton/ImageButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
+import DragAndDropContext from '../DragAndDropImagesProvider/DragAndDropContext';
+import { addClassAfterEvent, removeClassAfterEvent, getContainerClassName, DRAGGING_CLASS, DRAGOVER_CLASS, DELETEBUTTON_CLASS } from './helpers/utils';
 
-const ImageItem = ({ imageData, isFeatured, isSelected, onDelete, onDrop, onStartDrag, onEndDrag, onSelection }: ImageItemProps) => {
-  const trigglerButton = () => <ImageButton size="icon-sm" className='imageItem__Button--delete' text="🗑"/>
-  const confirmButton = () => <ImageButton onClick={ deleteEventHandler } text="Continue"/>
-  const [ deleteEventHandler, imageOnSelectionHandler, containerClassName,
-        dragStartEventHandler, dragEndEventHandler, dropEventHandler,
-        dragOverEventHandler, dragLeaveEventHandler
-      ] = useImageItem(imageData.id, isFeatured, isSelected, onDelete, onDrop, onStartDrag, onEndDrag, onSelection);
+import './styles/ImageItem.css';
+
+const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
+  const { onStartDrag, onEndDrag, onDrop, onSelection, onDelete } = React.useContext(DragAndDropContext);
+
+  const trigglerButton = () => <ImageButton size="icon-sm" className={ DELETEBUTTON_CLASS } text="🗑"/>
+  const confirmButton = () => <ImageButton onClick={ () => { onDelete(imageData.id) } } text="Continue"/>
 
   return <div data-image={ imageData.id.toString() }
-    className={ containerClassName } 
+    className={ getContainerClassName(isSelected, isFeatured) } 
     draggable={ false }
-    onClick={ imageOnSelectionHandler } 
-    onDrop={ dropEventHandler }
-    onDragOver={ dragOverEventHandler }
-    onDragLeave={ dragLeaveEventHandler }
-    onDragStart={ dragStartEventHandler }
-    onDragEnd={ dragEndEventHandler }>
+    onClick={ () => { onSelection(imageData.id) } } 
+    onDrop={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, '', onDrop) } }
+    onDragOver={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, DRAGOVER_CLASS, () => { }) } }
+    onDragLeave={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGOVER_CLASS, () => { }) } }
+    onDragStart={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, false, DRAGGING_CLASS, onStartDrag) } }
+    onDragEnd={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGGING_CLASS, onEndDrag) } }>
       <img data-image={ imageData.id.toString() }
         src={ isFeatured ? imageData.imageSizes.large : imageData.imageSizes.small }
-        onDrop={ dropEventHandler }
+        onDrop={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, '', onDrop) } }
         tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageData.alt }
         className="imageItem__image" />
       <CustomAlertDialog

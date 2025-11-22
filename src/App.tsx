@@ -1,7 +1,7 @@
 import './App.css';
 
 import Gallery from './components/Gallery/Gallery';
-import { data } from './data/images';
+import DragAndDropImagesProvider from './components/DragAndDropImagesProvider/DragAndDropImagesProvider';
 
 function App() {
   return (<>
@@ -11,7 +11,9 @@ function App() {
     </header>
     
     <main>
-      <Gallery images={ data }></Gallery>
+      <DragAndDropImagesProvider>
+        <Gallery />
+      </DragAndDropImagesProvider>
     </main>
 
     <footer className="flex justify-center items-center m-10">
