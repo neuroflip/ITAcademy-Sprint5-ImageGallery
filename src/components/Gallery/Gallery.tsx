@@ -2,7 +2,7 @@ import type { GalleryProps } from './Gallery.d';
 
 import ImageItem from '../ImageItem/ImageItem';
 import useGallery from './hooks/useGallery';
-import ContextMenuDemo from '../ContextualMenu/ContextualMenu';
+import CustomContextMenu from '../ContextualMenu/ContextualMenu';
 
 
 
@@ -11,7 +11,7 @@ const Gallery = ({ images }: GalleryProps) => {
         onSelectAll, onDeselectAll, onDeleteSelected ] = useGallery(images);
 
     return <>   
-        <ContextMenuDemo triggerElement={ 
+        <CustomContextMenu triggerElement={ 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 { imagesData.length > 0 ? [...imagesData].map((imageData, index) => (
                     <ImageItem key={ imageData.imageSizes.small }

@@ -10,7 +10,12 @@ const useImageItem = (id: number, isFeatured: boolean, isSelected: boolean, onDe
         (event: React.DragEvent<HTMLDivElement>) => void,
         (event: React.DragEvent<HTMLDivElement>) => void
     ] => {
-    
+
+        
+    const containerClassName = `imageItem__container`+ 
+        `${ isSelected ? ' imageItem__container--selected' : '' } `+
+        `${ isFeatured ? ' imageItem__container--featured' : ''}`
+
     const imageOnSelectionHandler = () => {
         onSelection(id);
     };
@@ -18,10 +23,6 @@ const useImageItem = (id: number, isFeatured: boolean, isSelected: boolean, onDe
     const deleteEventHandler = () => {
         onDelete(id);
     }
-
-    const containerClassName = `imageItem__container`+ 
-        `${ isSelected ? ' imageItem__container--selected' : '' } `+
-        `${ isFeatured ? ' imageItem__container--featured' : ''}`
 
     const dragStartEventHandler = (event: React.DragEvent<HTMLDivElement>) => {
         const imageElement = event.currentTarget as HTMLElement;
