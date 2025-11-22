@@ -5,6 +5,7 @@ import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/ITAcademy-Sprint5-ImageGallery/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
