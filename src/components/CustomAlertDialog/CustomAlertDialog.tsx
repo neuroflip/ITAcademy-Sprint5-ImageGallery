@@ -1,4 +1,5 @@
 import type { CustomAlertDialogProps } from './CustomAlertDialog.d';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,25 +11,29 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import ImageButton from '../ImageButton/ImageButton';
 
-const CustomAlertDialog = ({ title, description, alertTriggerElement, confirmElement }: CustomAlertDialogProps) => {
-    return <AlertDialog>
-      <AlertDialogTrigger asChild>
-        { alertTriggerElement() }
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{ title }</AlertDialogTitle>
-          <AlertDialogDescription>{ description }</AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction asChild>
-            { confirmElement() }
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+const CustomAlertDialog = ({ isOpen, title, description, confirmCallback, cancelCallback, alertTriggerElement }: CustomAlertDialogProps) => {
+
+  return <AlertDialog open={ isOpen }>
+    <AlertDialogTrigger asChild>
+      { alertTriggerElement && alertTriggerElement() }
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>{ title }</AlertDialogTitle>
+        <AlertDialogDescription>{ description }</AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel asChild>
+          <ImageButton onClick={ cancelCallback } text="Cancel"/>
+        </AlertDialogCancel>
+        <AlertDialogAction asChild>
+          <ImageButton onClick={ confirmCallback } text="Continue"/>
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
 
 }
 

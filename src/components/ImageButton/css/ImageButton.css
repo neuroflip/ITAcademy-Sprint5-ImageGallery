@@ -1,8 +1,8 @@
 @reference "tailwindcss";
 
-@layer components {
-    .imageItem__container button.imageItem__Button--delete {
+@layer utilities {
+    .imageItem__Button--delete {
         @apply absolute bottom-2 right-2 z-10;
-        @apply text-[0.5rem];
+        @apply text-[0.6rem];
     }
 }

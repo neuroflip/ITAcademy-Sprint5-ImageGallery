@@ -8,7 +8,7 @@ import DragAndDropContext from '../DragAndDropImagesProvider/DragAndDropContext'
 const Gallery = ({ images }: GalleryProps) => {
     const { selectedImagesIds, onStartDrag, onEndDrag, onDrop, onSelection, onDelete,
             onSelectAll, onDeselectAll, onDeleteSelected } = React.useContext(DragAndDropContext);
-    return <>   
+    return <>
         <CustomContextMenu triggerElement={ 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 { images && images.length > 0 ? [...images].map((imageData, index) => (
@@ -29,9 +29,8 @@ const Gallery = ({ images }: GalleryProps) => {
             </div>
         } 
         onSelectAll={ onSelectAll }
-        onDeleteSelected={ onDeleteSelected}
-        onDeselectAll={ onDeselectAll } />
-
+        onDeselectAll={ onDeselectAll } 
+        onDeleteSelected={ onDeleteSelected} />
     </>
 }
 

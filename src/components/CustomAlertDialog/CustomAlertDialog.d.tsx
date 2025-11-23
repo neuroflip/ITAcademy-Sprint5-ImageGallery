@@ -1,10 +1,12 @@
-import type { JSX } from "react";
+import * as React from 'react';
 
 type CustomAlertDialogProps = {
+  isOpen?: boolean,
   title: string,
   description: string,
-  alertTriggerElement: () => JSX.Element,
-  confirmElement: () => JSX.Element
+  alertTriggerElement?: () => React.JSX.Element,
+  confirmCallback: () => void,
+  cancelCallback: () => void
 }
 
 export type { CustomAlertDialogProps };
