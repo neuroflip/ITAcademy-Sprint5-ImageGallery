@@ -12,7 +12,7 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
   const { onStartDrag, onEndDrag, onDrop, onSelection, onDelete } = React.useContext(DragAndDropContext);
 
   const trigglerButton = () => <ImageButton size="icon-sm" className={ DELETEBUTTON_CLASS } text="🗑"/>
-  const confirmButton = () => <ImageButton onClick={ () => { onDelete(imageData.id) } } text="Continue"/>
+  //const confirmButton = () => <ImageButton onClick={ () => { onDelete(imageData.id) } } text="Continue"/>
 
   return <div data-image={ imageData.id.toString() }
     className={ getContainerClassName(isSelected, isFeatured) } 
@@ -20,9 +20,9 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
     onClick={ () => { onSelection(imageData.id) } } 
     onDrop={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, '', onDrop) } }
     onDragOver={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, DRAGOVER_CLASS, () => { }) } }
-    onDragLeave={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGOVER_CLASS, () => { }) } }
     onDragStart={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, false, DRAGGING_CLASS, onStartDrag) } }
-    onDragEnd={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGGING_CLASS, onEndDrag) } }>
+    onDragEnd={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGGING_CLASS, onEndDrag) } }
+    onDragLeave={ (event: React.DragEvent<HTMLDivElement>) => { removeClassAfterEvent(event, true, DRAGOVER_CLASS, () => { }) } }>
       <img data-image={ imageData.id.toString() }
         src={ isFeatured ? imageData.imageSizes.large : imageData.imageSizes.small }
         onDrop={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, '', onDrop) } }
@@ -31,8 +31,9 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
       <CustomAlertDialog
         title = "Are you absolutely sure?"
         description = "This action cannot be undone. This will permanently delete the image from the Image Gallery."
-        alertTriggerElement={ trigglerButton } 
-        confirmElement={ confirmButton } />
+        alertTriggerElement={ trigglerButton }
+        confirmCallback={ () => { onDelete(imageData.id) } }
+        cancelCallback={ () => { } }/>
     </div>
 }
 
