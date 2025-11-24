@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import type { ImageItemProps } from './ImageItem.d';
+import { DELETEBUTTON_CLASS } from './ImageItem.d';
 import CustomButton from '../ImageButton/CustomButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
 import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
-import { getContainerClassName, DELETEBUTTON_CLASS } from './helpers/utils';
+import { getContainerClassName } from './helpers/utils';
 
 import './styles/ImageItem.css';
 

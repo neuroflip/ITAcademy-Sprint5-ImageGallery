@@ -1,7 +1,6 @@
 import * as React from 'react';
-const DRAGGING_CLASS = 'imageItem__container--dragging';
-const DRAGOVER_CLASS = 'imageItem__container--dragOver';
 
+import { DRAGGING_CLASS, DRAGOVER_CLASS } from '../DragAndDropImagesManager.d';
 
 const useDragAndDropUI = (): [(event: React.DragEvent<HTMLDivElement>) => void, 
     (event: React.DragEvent<HTMLDivElement>) => void, (event: React.DragEvent<HTMLDivElement>) => void,
