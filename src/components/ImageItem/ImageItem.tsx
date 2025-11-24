@@ -1,47 +1,56 @@
 import * as React from 'react';
 
 import type { ImageItemProps } from './ImageItem.d';
-import ImageButton from '../ImageButton/ImageButton';
+
+import CustomButton from '../ImageButton/CustomButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
-import DragAndDropContext from '../DragAndDropImagesProvider/DragAndDropContext';
-import { addClassAfterEvent, removeClassAfterEvent, getContainerClassName, DRAGGING_CLASS, DRAGOVER_CLASS, DELETEBUTTON_CLASS } from './helpers/utils';
+import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
+import { getContainerClassName } from './helpers/utils';
 
 import './styles/ImageItem.css';
 
-const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
-  const { onStartDrag, onEndDrag, onDrop, onSelection, onDelete } = React.useContext(DragAndDropContext);
+const DELETEBUTTON_CLASS = `imageItem__Button--delete`;
 
-  const trigglerButton = () => <ImageButton size="icon-sm" className={ DELETEBUTTON_CLASS } text="🗑"/>
+const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
+  const { onDragStart, onDragEnd, onDragOver, onDragLeave, onDrop, onReorderImage, onSelectImage, onDeleteImage } = React.useContext(DragAndDropContext);
+  const trigglerButton = () => <CustomButton size="icon-sm" className={ DELETEBUTTON_CLASS } text="🗑"/>
 
   return <div data-image={ imageData.id.toString() }
     className={ getContainerClassName(isSelected, isFeatured) } 
-    draggable={ false }
-    onClick={ () => { onSelection(imageData.id) } } 
+    onClick={ () => { onSelectImage(imageData.id) } } 
     onDrop={ (event: React.DragEvent<HTMLDivElement>) => {
-      addClassAfterEvent(event, true, '', onDrop) 
-    } }
+        onDrop(event.currentTarget); 
+        onReorderImage(Number(event.dataTransfer.getData('text')), imageData.id);
+      }
+    }
     onDragOver={ (event: React.DragEvent<HTMLDivElement>) => {
-      addClassAfterEvent(event, true, DRAGOVER_CLASS, () => { })
-    } }
+        event.preventDefault();
+        onDragOver(event);
+      }
+    }
     onDragStart={ (event: React.DragEvent<HTMLDivElement>) => {
-      addClassAfterEvent(event, false, DRAGGING_CLASS, onStartDrag)
-    } }
+        event.dataTransfer.setData("text", (event.target as HTMLDivElement).dataset.image || '');
+        onDragStart(event);
+      }
+    }
     onDragEnd={ (event: React.DragEvent<HTMLDivElement>) => {
-      removeClassAfterEvent(event, true, DRAGGING_CLASS, onEndDrag)
-    } }
+        onDragEnd(event);
+      }
+    }
     onDragLeave={ (event: React.DragEvent<HTMLDivElement>) => {
-      removeClassAfterEvent(event, true, DRAGOVER_CLASS, () => { })
-    } }>
+        event.preventDefault();
+        onDragLeave(event);
+      }
+    }>
       <img data-image={ imageData.id.toString() }
         src={ isFeatured ? imageData.imageSizes.large : imageData.imageSizes.small }
-        onDrop={ (event: React.DragEvent<HTMLDivElement>) => { addClassAfterEvent(event, true, '', onDrop) } }
         tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageData.alt }
         className="imageItem__image" />
       <CustomAlertDialog
         title = "Are you absolutely sure?"
         description = "This action cannot be undone. This will permanently delete the image from the Image Gallery."
         alertTriggerElement={ trigglerButton }
-        confirmCallback={ () => { onDelete(imageData.id) } }
+        confirmCallback={ () => { onDeleteImage(imageData.id) } }
         cancelCallback={ () => { } }/>
     </div>
 }

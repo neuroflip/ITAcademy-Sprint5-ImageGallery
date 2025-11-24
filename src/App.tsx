@@ -1,7 +1,7 @@
 import './App.css';
 
 import Gallery from './components/Gallery/Gallery';
-import DragAndDropImagesProvider from './components/DragAndDropImagesProvider/DragAndDropImagesProvider';
+import DragAndDropImagesManager from './components/DragAndDropImagesManager/DragAndDropImagesManager';
 
 function App() {
   return (<>
@@ -14,9 +14,9 @@ function App() {
       <div className="my-4 p-4 border-dotted border-2 border-amber-700 rounded-xl italic text-xs">
         <u>Tip</u>: press right mouse button to select all images, deselect images or delete selected images.
       </div>
-      <DragAndDropImagesProvider>
+      <DragAndDropImagesManager>
         <Gallery />
-      </DragAndDropImagesProvider>
+      </DragAndDropImagesManager>
     </main>
 
     <footer className="flex justify-center items-center m-10">

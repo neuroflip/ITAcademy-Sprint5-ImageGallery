@@ -1,39 +1,10 @@
-  const SELECTED_CLASS = 'imageItem__container--selected';
-  const FEATURED_CLASS = 'imageItem__container--featured';
-  const DRAGGING_CLASS = 'imageItem__container--dragging';
-  const DRAGOVER_CLASS = 'imageItem__container--dragOver';
-  const DELETEBUTTON_CLASS = 'imageItem__Button--delete';
+import { IMAGECONTAINER_CLASS } from "@/components/DragAndDropImagesManager/DragAndDropImagesManager.d";
 
-  const addClassAfterEvent = (event: React.DragEvent<HTMLDivElement>,
-    preventDef: boolean,
-    className: string,
-    callback: (element: HTMLElement) => void) => {
-      const element = event.target as HTMLElement;
+const SELECTED_CLASS = `${IMAGECONTAINER_CLASS}--selected`;
+const FEATURED_CLASS = `${IMAGECONTAINER_CLASS}--featured`;
 
-      event.stopPropagation();
-      if(preventDef) {
-        event.preventDefault();
-      }
-      callback(element);
-      element?.classList.add(className);
-  }
-
-  const removeClassAfterEvent = (event: React.DragEvent<HTMLDivElement>, 
-    preventDef: boolean,
-    className: string,
-    callback: (element: HTMLElement) => void) => {
-      const element = event.target as HTMLElement;
-
-      event.stopPropagation();
-      if(preventDef){
-        event.preventDefault();
-      } 
-      callback(element);
-      element?.classList.remove(className);
-  }
-
-  const getContainerClassName = (isSelected: boolean, isFeatured: boolean) => `imageItem__container `+ 
+  const getContainerClassName = (isSelected: boolean, isFeatured: boolean) => `${IMAGECONTAINER_CLASS} `+ 
       `${ isSelected ? SELECTED_CLASS : '' } `+
       `${ isFeatured ? FEATURED_CLASS : '' }`
 
-  export { addClassAfterEvent, removeClassAfterEvent, getContainerClassName, DRAGGING_CLASS, DRAGOVER_CLASS, DELETEBUTTON_CLASS };
+  export { getContainerClassName };
