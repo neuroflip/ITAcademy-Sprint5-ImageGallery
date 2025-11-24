@@ -2,7 +2,9 @@ type DragAndDropImagesManagerProps = {
     children: React.ReactElement
 }
 
-const DRAGGING_CLASS = 'imageItem__container--dragging';
-const DRAGOVER_CLASS = 'imageItem__container--dragOver';
+const IMAGECONTAINER_CLASS = 'imageItem__container';
+const DRAGGING_CLASS = `${IMAGECONTAINER_CLASS}--dragging`;
+const DRAGOVER_CLASS = `${IMAGECONTAINER_CLASS}--dragOver`;
 
-export { DragAndDropImagesManagerProps, DRAGGING_CLASS, DRAGOVER_CLASS };
+export { DragAndDropImagesManagerProps, DRAGGING_CLASS, DRAGOVER_CLASS, 
+    IMAGECONTAINER_CLASS };

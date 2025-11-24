@@ -1,6 +1,9 @@
-import { SELECTED_CLASS, FEATURED_CLASS } from '../ImageItem.d';
+import { IMAGECONTAINER_CLASS } from "@/components/DragAndDropImagesManager/DragAndDropImagesManager.d";
 
-  const getContainerClassName = (isSelected: boolean, isFeatured: boolean) => `imageItem__container `+ 
+const SELECTED_CLASS = `${IMAGECONTAINER_CLASS}--selected`;
+const FEATURED_CLASS = `${IMAGECONTAINER_CLASS}--featured`;
+
+  const getContainerClassName = (isSelected: boolean, isFeatured: boolean) => `${IMAGECONTAINER_CLASS} `+ 
       `${ isSelected ? SELECTED_CLASS : '' } `+
       `${ isFeatured ? FEATURED_CLASS : '' }`
 

@@ -1,13 +1,15 @@
 import * as React from 'react';
 
 import type { ImageItemProps } from './ImageItem.d';
-import { DELETEBUTTON_CLASS } from './ImageItem.d';
+
 import CustomButton from '../ImageButton/CustomButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
 import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
 import { getContainerClassName } from './helpers/utils';
 
 import './styles/ImageItem.css';
+
+const DELETEBUTTON_CLASS = `imageItem__Button--delete`;
 
 const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
   const { onDragStart, onDragEnd, onDragOver, onDragLeave, onDrop, onReorderImage, onSelectImage, onDeleteImage } = React.useContext(DragAndDropContext);
