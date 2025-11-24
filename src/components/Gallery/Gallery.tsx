@@ -23,7 +23,8 @@ const Gallery = ({ images }: GalleryProps) => {
                         onSelection={ onSelection } />
                 )) :
                     <div className="col-span-full text-center text-muted-foreground mt-10">
-                        No images available in the gallery.
+                        No images available in the gallery. <br />
+                        * <a href="/">click to reload</a> *
                     </div>
                 }
             </div>
