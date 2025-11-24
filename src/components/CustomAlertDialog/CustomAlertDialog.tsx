@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import ImageButton from '../ImageButton/ImageButton';
+import ImageButton from '../ImageButton/CustomButton';
 
 const CustomAlertDialog = ({ isOpen, title, description, confirmCallback, cancelCallback, alertTriggerElement }: CustomAlertDialogProps) => {
 

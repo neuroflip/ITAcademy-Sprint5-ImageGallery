@@ -10,7 +10,7 @@
     callback: (element: HTMLElement) => void) => {
       const element = event.target as HTMLElement;
 
-      event.stopPropagation();
+      //event.stopPropagation();
       if(preventDef) {
         event.preventDefault();
       }

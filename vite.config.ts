@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from "path"
@@ -7,6 +7,11 @@ import path from "path"
 export default defineConfig({
   base: "/ITAcademy-Sprint5-ImageGallery/",
   plugins: [react(), tailwindcss()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setupTests.ts',
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
