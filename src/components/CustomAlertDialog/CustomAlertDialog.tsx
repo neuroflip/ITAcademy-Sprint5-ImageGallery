@@ -1,19 +1,14 @@
 import type { CustomAlertDialogProps } from './CustomAlertDialog.d';
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
+  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import ImageButton from '../ImageButton/CustomButton';
+import ImageButton from '../CustomButton/CustomButton';
 
-const CustomAlertDialog = ({ isOpen, title, description, confirmCallback, cancelCallback, alertTriggerElement }: CustomAlertDialogProps) => {
+const CustomAlertDialog = ({ isOpen, title, description, confirmCallback, 
+  cancelCallback, alertTriggerElement }: CustomAlertDialogProps) => {
 
   return <AlertDialog open={ isOpen }>
     <AlertDialogTrigger asChild>

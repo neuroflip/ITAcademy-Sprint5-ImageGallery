@@ -1,5 +1,8 @@
 import type { ImagesData } from "@/data/images.d";
 
+const alertDialogTitle = "Are you absolutely sure?";
+const alertDialogDescription = "This action cannot be undone. This will permanently delete the image from the Image Gallery.";
+
 type ImageItemProps = {
   imageData: ImagesData,
   isFeatured: boolean,
@@ -12,4 +15,4 @@ enum ImageSize {
   Large
 }
 
-export { ImageItemProps, ImageSize };
+export { ImageItemProps, ImageSize, alertDialogTitle, alertDialogDescription };

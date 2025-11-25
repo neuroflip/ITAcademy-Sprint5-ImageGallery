@@ -1,9 +1,9 @@
 
-type CustomContextMenuProps = {
+type CustomContextualMenuProps = {
   triggerElement: React.ReactNode;
   onSelectAll: () => void,
   onDeselectAll: () => void,
   onDeleteSelected: () => void
 }
 
-export type { CustomContextMenuProps };
+export type { CustomContextualMenuProps };

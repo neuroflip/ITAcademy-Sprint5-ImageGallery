@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import type { ImageItemProps } from './ImageItem.d';
+import { alertDialogTitle, alertDialogDescription } from './ImageItem.d';
 
-import CustomButton from '../ImageButton/CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
 import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
 import { getContainerClassName } from './helpers/utils';
@@ -47,8 +48,8 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
         tabIndex={ 0 } loading="lazy" decoding="async" alt={ imageData.alt }
         className="imageItem__image" />
       <CustomAlertDialog
-        title = "Are you absolutely sure?"
-        description = "This action cannot be undone. This will permanently delete the image from the Image Gallery."
+        title = { alertDialogTitle}
+        description = { alertDialogDescription } 
         alertTriggerElement={ trigglerButton }
         confirmCallback={ () => { onDeleteImage(imageData.id) } }
         cancelCallback={ () => { } }/>

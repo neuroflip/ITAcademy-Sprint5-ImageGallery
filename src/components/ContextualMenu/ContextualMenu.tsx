@@ -9,9 +9,9 @@ import {
 
 import CustomAlertDialog from "../CustomAlertDialog/CustomAlertDialog";
 
-import type { CustomContextMenuProps } from "./ContextualMenu.d";
+import type { CustomContextualMenuProps } from "./ContextualMenu.d";
 
-const CustomContextMenu = ({ triggerElement, onSelectAll, onDeselectAll, onDeleteSelected }: CustomContextMenuProps) => {
+const CustomContextualMenu = ({ triggerElement, onSelectAll, onDeselectAll, onDeleteSelected }: CustomContextualMenuProps) => {
   const [alertDialogIsOpen, setAlertDialogIsOpen ] = React.useState<boolean>(false);
   const confirmCallback = () => { onDeleteSelected(); setAlertDialogIsOpen(false) };
   const cancelCallback = () => { setAlertDialogIsOpen(false) };
@@ -49,4 +49,4 @@ const CustomContextMenu = ({ triggerElement, onSelectAll, onDeselectAll, onDelet
   )
 }
 
-export default CustomContextMenu;
+export default CustomContextualMenu;

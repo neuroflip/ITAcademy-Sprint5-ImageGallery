@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import ImagesManager from '@/ImagesManager/ImagesManager';
-import PicSumImagesDataProvider from '@/ImagesManager/providers/PicSumImagesDataProvider';
+import ImagesDataProvider from '@/ImagesDataProvider/ImagesDataProvider';
+import PicSumImagesDataProvider from '@/ImagesDataProvider/providers/PicSumImagesDataProvider';
 
-import type { ImagesData } from '@/ImagesManager/ImagesManager.d';
+import type { ImagesData } from '@/ImagesDataProvider/ImagesDataProvider.d';
 
 const deleteImageFromArray = (array: Array<ImagesData>, id: number) => {
     const image = array.find((image) => image.id === id);
@@ -21,7 +21,7 @@ const useImagesData = (): [Array<ImagesData>, Set<number>,
         (id: number) => void, () => void, (id: number) => void, () => void,
         () => void] => {
 
-    const imagesManager = new ImagesManager(new PicSumImagesDataProvider());
+    const imagesManager = new ImagesDataProvider(new PicSumImagesDataProvider());
     const [ imagesData, setImagesData ] = React.useState<Array<ImagesData>>(imagesManager.getImageDataArray());
     const [ selectedImagesIds, setSelectedImagesIds ] = React.useState<Set<number>>(new Set());
 
