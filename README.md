@@ -37,12 +37,25 @@ $ npm run lint
 
 <br>
 
+## Project structure
+
+![Project components diagram](/etc/ComponentsDiagram.png))
+
 ## Considerations
- - components self contained: code, custom hooks, styles, tests, helpers code
- - image gallery build using functional components
- - images with lazy loading and async decode 
- - render props for CustomAlertDialog (from shadcn)
- - DragAndDropImagesProvider is managing all the images data and drag and drop functionallity. It uses ContextAPI to share the drag and drop event handlers with his descendants avoiding prop drilling.
+ - <ins>self contained components</ins>: code, custom hooks, styles, tests, helpers code, etc.
+ - built using <ins>functional components</ins>.
+ - images with <ins>lazy loading</ins> and <ins>async decode</ins>. 
+ - <ins>Spinner images</ins> in ImageItem using background-image. When loads using src, the background image is not visible.
+ - <ins>render props</ins> for CustomAlertDialog (alertTriggerElement() to render the element that triggers the AlertDialog)
+ - DragAndDropImagesManager <ins>custom hooks</ins> to manage UI (useDragAndDropUI) and images data array functionallity (useImagesData).
+ - DragAndDropImagesManager uses <ins>ContextAPI</ins> to share the drag and drop ui and image data array functionallity (avoiding prop drilling).
+ - DragAndDropImagesManager UI custom hook using <ins>useCallback</ins> function to memoize the function definitions between re-renders.
+ - ImagesManager exposes a getImageDataArray function to get the images data array from an <ins>dependency injected provider</ins> (PicSumImagesDataProvider).
+ - DragAndDropImagesManager uses Gallery with <ins>component composition</ins>.
+ - CustomContextualMenu uses ImageItem as the triggerElement.
+ - <ins>shadcn</ins> components in use: AlertDialog, ContextMenu and Button.
+ - useDragAndDropUI onDragStart sets <ins>event.dataTransfer</ins> data into drag and drop event to manage the dragged element id.
+
 
 MANU:
 - tailwind installation: https://tailwindcss.com/docs/installation/using-vite

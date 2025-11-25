@@ -9,13 +9,13 @@ type ImagesData = {
     alt: string
 }
 
-type ImagesDataProvider = {
+type DataProvider = {
   getImages: () => Array<ImagesData>;
 }
 
-interface ImagesManagerInterface {
+interface ImagesDataProviderInterface {
   getImageDataArray: () => Array<ImagesData>;
 }
 
 
-export { ImagesDataProvider, ImagesManagerInterface, ImagesData };
+export { DataProvider, ImagesDataProviderInterface, ImagesData };
