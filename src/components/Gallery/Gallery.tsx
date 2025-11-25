@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { GalleryProps } from './Gallery.d';
 
 import ImageItem from '../ImageItem/ImageItem';
-import CustomContextualMenu from '../ContextualMenu/ContextualMenu';
+import CustomContextualMenu from '../CustomContextualMenu/CustomContextualMenu';
 import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
 
 const Gallery = ({ images }: GalleryProps) => {

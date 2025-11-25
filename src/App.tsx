@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 
 import Gallery from './components/Gallery/Gallery';
 import DragAndDropImagesManager from './components/DragAndDropImagesManager/DragAndDropImagesManager';
