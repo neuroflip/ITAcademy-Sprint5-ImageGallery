@@ -8,7 +8,12 @@ class ImagesDataProvider implements ImagesDataProviderInterface {
   }
 
   getImageDataArray(): Array<ImagesData> {
-    return this.dataProvider.getImages();
+    if (this.dataProvider) {
+      return this.dataProvider.getImages();
+    } else {
+      throw new Error('There is no registered Data Provider to get images data from');
+    }
+    
   }
 }
 
