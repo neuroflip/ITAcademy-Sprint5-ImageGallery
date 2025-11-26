@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import type { DragAndDropImagesManagerProps } from './DragAndDropImagesManager.d';
 import type { GalleryProps } from '../Gallery/Gallery.d';
-import DragAndDropContext from './DragAndDropContext';
+import DragAndDropContext from './context/DragAndDropContext';
 import useDragAndDropUI from './hooks/useDragAndDropUI';
 import useImagesData from './hooks/useImagesData';
 

@@ -7,9 +7,9 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
 
-import CustomAlertDialog from "../CustomAlertDialog/CustomAlertDialog";
+import CustomAlertDialog from "@/components/CustomAlertDialog/CustomAlertDialog";
 
-import type { CustomContextualMenuProps } from "./ContextualMenu.d";
+import type { CustomContextualMenuProps } from "./CustomContextualMenu.d";
 
 const CustomContextualMenu = ({ triggerElement, onSelectAll, onDeselectAll, onDeleteSelected }: CustomContextualMenuProps) => {
   const [alertDialogIsOpen, setAlertDialogIsOpen ] = React.useState<boolean>(false);

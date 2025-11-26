@@ -26,49 +26,56 @@ const useImagesData = (): [Array<ImagesData>, Set<number>,
     const [ selectedImagesIds, setSelectedImagesIds ] = React.useState<Set<number>>(new Set());
 
     const onReorderImage = (originalPositionId: number, destinationPositionId: number) => {
-            const newImagesData = [...imagesData];
-            const findImageById = (id1: number, id2: number) => id1 === id2;
-            const currentDropImageData = newImagesData.find((element) => findImageById(element.id, originalPositionId));
-            const destinationImageData = newImagesData.find((element) => findImageById(element.id, destinationPositionId));
+        const newImagesData = [...imagesData];
+        const findImageById = (id1: number, id2: number) => id1 === id2;
+        const currentDropImageData = newImagesData.find((element) => findImageById(element.id, originalPositionId));
+        const destinationImageData = newImagesData.find((element) => findImageById(element.id, destinationPositionId));
 
-            if (currentDropImageData && destinationImageData) {
-                const originPosition = newImagesData.indexOf(currentDropImageData);
-                const destPosition = newImagesData.indexOf(destinationImageData);
-                const element = newImagesData.splice(originPosition, 1);
+        if (currentDropImageData && destinationImageData) {
+            const originPosition = newImagesData.indexOf(currentDropImageData);
+            const destPosition = newImagesData.indexOf(destinationImageData);
+            const element = newImagesData.splice(originPosition, 1);
 
-                newImagesData.splice(destPosition, 0, element[0]);
-                setImagesData(newImagesData);
-            }
+            newImagesData.splice(destPosition, 0, element[0]);
+            setImagesData(newImagesData);
+        }
     }
 
     const onDeleteImage = (id: number) => {
-        const newImagesData = [...imagesData];
+        setImagesData((prev) => {
+            const newImagesData = [...prev];
 
-        deleteImageFromArray(newImagesData, id);
-        setImagesData(newImagesData);
+            deleteImageFromArray(newImagesData, id);
+
+            return newImagesData;
+        });
     }
 
     const onDeleteSelectedImages = () => {
-        const newImamgesData = [...imagesData]
-
-        selectedImagesIds.forEach((imageId) => {
-            deleteImageFromArray(newImamgesData, imageId);
+        setSelectedImagesIds((prevSelected) => {
+            setImagesData((prevImages) => {
+                const newImages = [...prevImages];
+                prevSelected.forEach((imageId) => {
+                    deleteImageFromArray(newImages, imageId);
+                });
+                return newImages;
+            });
+            return new Set<number>();
         });
-
-        setImagesData(newImamgesData);
-        setSelectedImagesIds(new Set<number>());
     };
 
-    const onSelectImage = (id: number) => {
-        const newSelectedImagesIds = new Set(selectedImagesIds);
+    const onSelectImage = (id: number) => {        
+        setSelectedImagesIds((prev) => {
+            const newSelectedImagesIds = new Set(prev);
 
-        if (newSelectedImagesIds.has(id)) {
-            newSelectedImagesIds.delete(id);
-        } else {
-            newSelectedImagesIds.add(id);
-        }
-        
-        setSelectedImagesIds(newSelectedImagesIds);
+            if (newSelectedImagesIds.has(id)) {
+                newSelectedImagesIds.delete(id);
+            } else {
+                newSelectedImagesIds.add(id);
+            }
+
+            return newSelectedImagesIds;
+        });
     };
 
     const onSelectAllImages = () => {

@@ -5,7 +5,7 @@ import { alertDialogTitle, alertDialogDescription } from './ImageItem.d';
 
 import CustomButton from '../CustomButton/CustomButton';
 import CustomAlertDialog from '../CustomAlertDialog/CustomAlertDialog';
-import DragAndDropContext from '../DragAndDropImagesManager/DragAndDropContext';
+import DragAndDropContext from '../DragAndDropImagesManager/context/DragAndDropContext';
 import { getContainerClassName } from './helpers/utils';
 
 import './styles/ImageItem.css';
@@ -20,7 +20,7 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
     className={ getContainerClassName(isSelected, isFeatured) } 
     onClick={ () => { onSelectImage(imageData.id) } } 
     onDrop={ (event: React.DragEvent<HTMLDivElement>) => {
-        onDrop(event.currentTarget); 
+        onDrop(event); 
         onReorderImage(Number(event.dataTransfer.getData('text')), imageData.id);
       }
     }

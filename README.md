@@ -2,7 +2,20 @@
 
 ## Introduction
 
-This is the implementation of the ITAcademy Sprint5 - Image Gallery. Live demo at: [live demo link](https://neuroflip.github.io/ITAcademy-Sprint5-ImageGallery)
+This is the implementation of the ITAcademy Sprint5 - Image Gallery.
+
+![Image Gallery screenshot](/etc/screenshot.png)
+
+### Features
+- Image selection
+- Image delete
+- Right mouse button contextual menu with:
+    - select all images functionality
+    - deselect images functionality
+    - delete selected images functionality
+- Drag and drop images to reorder
+
+Live demo at: [live demo link](https://neuroflip.github.io/ITAcademy-Sprint5-ImageGallery)
 
 ## Install and run
 
@@ -39,6 +52,35 @@ $ npm run lint
 
 ## Project structure
 
+The project is using the self contained components phylosophy: implementation, custom hooks, styles, tests, helpers code, etc are all together inside the component directory.
+
+| Directory | Content |
+| -------- | -------- |
+| /src/ | All the source code |
+| -- /components/ | All the components source code |
+| ---- /CustomAlertDialog/ | AlertDialog to confirm user actions |
+| ------ /test/ | tests for the CustomAlertDialog |
+| ---- /CustomButton/ | Custom button imaplementation used broadly in the app |
+| ------ /test/ | tests for the CustomButton |
+| ---- /CustomContextualMenu/ | Contextual menu for batch images operations |
+| ------ /test/ | tests for the CustomContextualMenu
+| ---- /DragAndDropImagesManager/ | Manager of the images data array, selected images and drag and drop operations (reorder images) |
+| ------ /test/ | tests for the DragAndDropImagesManager |
+| ------ /hooks/ | implementation of custom hooks to manage the images data array and the drag and drop ui operations |
+| ---- <b>/Gallery/</b> | Component to show a collection of images |
+| ------ /test/ | tests for the Gallery |
+| ---- <b>/ImageItem/</b> | Image card implementation |
+| ------ /test/ | tests for the ImageItem |
+| -- /styles/ | css common code |
+| -- /test/ | tests for the App component |
+| -- <b>/ImagesDataProvider/</b> | provider of the images data array using a concrete provider |
+| ---- /tests/ | tests for the ImageDataProvider |
+| ---- /providers/ | directory for concrete data providers implementations. Includes the PicSumImagesDataProvider implementation |
+| ------ /tests/ | tests for the PicSumImagesDataProvider |
+| -- /styles/ | scss common code
+
+### Components diagram: 
+
 ![Project components diagram](/etc/ComponentsDiagram.png))
 
 ## Considerations
@@ -56,18 +98,10 @@ $ npm run lint
  - <ins>shadcn</ins> components in use: AlertDialog, ContextMenu and Button.
  - useDragAndDropUI onDragStart sets <ins>event.dataTransfer</ins> data into drag and drop event to manage the dragged element id.
 
-
-MANU:
-- tailwind installation: https://tailwindcss.com/docs/installation/using-vite
-    - npm tailwind init is not needed https://stackoverflow.com/questions/79383758/how-to-setting-tailwind-css-v4-global-class/79383770#79383770
-    - no need for autoprefixed or postcss install (as it cames by default with tailwind core)
-    - NOW:  https://tailwindcss.com/docs/installation/using-vite
-        - npm install tailwindcss @tailwindcss/vite
-        - edit vite config to add the tailwindcss plugin
-        - import @import "tailwindcss"; en el index.css
-
 ## CI pipeline
 
-## Testing
+The project is managing a CI process using test execution and eslint execution using github actions. Check file .github/workflows/main.yml for more information. This pipeline is executed when some developer wants creates a PR to integrate into main (as example).
+
+![alt ci pipeline execution result in a correct PR](/etc/ci.png)
 
 <br />

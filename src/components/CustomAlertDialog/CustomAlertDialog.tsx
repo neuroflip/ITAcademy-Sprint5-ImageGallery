@@ -5,7 +5,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import ImageButton from '../CustomButton/CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
 
 const CustomAlertDialog = ({ isOpen, title, description, confirmCallback, 
   cancelCallback, alertTriggerElement }: CustomAlertDialogProps) => {
@@ -21,10 +21,10 @@ const CustomAlertDialog = ({ isOpen, title, description, confirmCallback,
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel asChild>
-          <ImageButton onClick={ cancelCallback } text="Cancel"/>
+          <CustomButton onClick={ cancelCallback } text="Cancel"/>
         </AlertDialogCancel>
         <AlertDialogAction asChild>
-          <ImageButton onClick={ confirmCallback } text="Continue"/>
+          <CustomButton onClick={ confirmCallback } text="Continue"/>
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
