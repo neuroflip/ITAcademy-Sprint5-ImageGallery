@@ -15,7 +15,7 @@ This is the implementation of the ITAcademy Sprint5 - Image Gallery.
     - delete selected images functionality
 - Drag and drop images to reorder
 
-Live demo at: [live demo link](https://neuroflip.github.io/ITAcademy-Sprint5-ImageGallery)
+Live demo at: [Image Gallery in production](https://neuroflip.github.io/ITAcademy-Sprint5-ImageGallery)
 
 ## Install and run
 
@@ -31,19 +31,24 @@ $ npm install
 ```bash
 $ npm run dev
 ```
-
 4. Or run it on production mode:
 ```bash
 $ npm run build
 $ npm run preview
 ```
-
 5. Run the tests:
 ```bash
 $ npm run test
 ```
-
-6. Run the linter analisis:
+6. Run the tests report in browser:
+```bash
+$ npm run test:ui
+```
+7. Run the tests coverage
+```bash
+$ npm run test:coverage
+```
+8. Run the linter analisis:
 ```bash
 $ npm run lint
 ```
@@ -52,36 +57,17 @@ $ npm run lint
 
 ## Project structure
 
-The project is using the self contained components phylosophy: implementation, custom hooks, styles, tests, helpers code, etc are all together inside the component directory.
+ - <ins>/src/</ins> all general the code, including main and App and the images providers.
+ - <ins>/src/styles/</ins> all the general css code not related to a component
+ - <ins>/src/test/</ins> App tests and tests file configuration
+ - <ins>/src/components/</ins> all the components code. The components are self included (custom hooks, styles, helper utils, context and tests)
+ 
+ And not related to the code: 
+ - /etc directory including the README images
 
-| Directory | Content |
-| -------- | -------- |
-| /src/ | All the source code |
-| -- /components/ | All the components source code |
-| ---- /CustomAlertDialog/ | AlertDialog to confirm user actions |
-| ------ /test/ | tests for the CustomAlertDialog |
-| ---- /CustomButton/ | Custom button imaplementation used broadly in the app |
-| ------ /test/ | tests for the CustomButton |
-| ---- /CustomContextualMenu/ | Contextual menu for batch images operations |
-| ------ /test/ | tests for the CustomContextualMenu
-| ---- /DragAndDropImagesManager/ | Manager of the images data array, selected images and drag and drop operations (reorder images) |
-| ------ /test/ | tests for the DragAndDropImagesManager |
-| ------ /hooks/ | implementation of custom hooks to manage the images data array and the drag and drop ui operations |
-| ---- <b>/Gallery/</b> | Component to show a collection of images |
-| ------ /test/ | tests for the Gallery |
-| ---- <b>/ImageItem/</b> | Image card implementation |
-| ------ /test/ | tests for the ImageItem |
-| -- /styles/ | css common code |
-| -- /test/ | tests for the App component |
-| -- <b>/ImagesDataProvider/</b> | provider of the images data array using a concrete provider |
-| ---- /tests/ | tests for the ImageDataProvider |
-| ---- /providers/ | directory for concrete data providers implementations. Includes the PicSumImagesDataProvider implementation |
-| ------ /tests/ | tests for the PicSumImagesDataProvider |
-| -- /styles/ | scss common code
+## Components diagram: 
 
-### Components diagram: 
-
-![Project components diagram](/etc/ComponentsDiagram.png))
+![Project components diagram](/etc/ComponentsDiagram.png)
 
 ## Considerations
  - <ins>self contained components</ins>: code, custom hooks, styles, tests, helpers code, etc.
