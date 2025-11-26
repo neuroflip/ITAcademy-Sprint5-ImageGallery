@@ -5,21 +5,21 @@ import CustomAlertDialog from "../CustomAlertDialog";
 import CustomButton from "@/components/CustomButton/CustomButton";
 
 vi.mock('@/components/CustomButton/CustomButton', () => {
-  const mockCustomButton = vi.fn((props: React.ButtonHTMLAttributes<HTMLButtonElement> & { text: string, children?: React.ReactNode }) => <button data-testid="mock-customButton" {...props}></button>)
-  // Return the mock as the default export, matching the real component's default export.
+  const mockCustomButton = vi.fn((props: React.ButtonHTMLAttributes<HTMLButtonElement> & { text: string, children?: React.ReactNode }) => <button data-testid="mock-customButton" {...props}></button>);
+
   return { default: mockCustomButton }
 });
 
 vi.mock("@/components/ui/alert-dialog", () => {
-  const mockAlertDialog = vi.fn((props: AlertDialogProps) => <div data-testid="mock-alertDialog" {...props}></div>)
-  const mockAlertDialogTrigger = vi.fn((props: AlertDialogTriggerProps & { children?: React.ReactNode }) => <button data-testid="mock-alertDialogTrigger" {...props}></button>)
-  const mockAlertDialogContent = vi.fn((props: AlertDialogContentProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogContent" {...props}></div>)
-  const mockAlertDialogHeader = vi.fn((props: { children?: React.ReactNode }) => <div data-testid="mock-alertDialogHeader" {...props}></div>)
-  const mockAlertDialogTitle = vi.fn((props: AlertDialogTitleProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogTitle" {...props}></div>)
-  const mockAlertDialogDescription = vi.fn((props: AlertDialogDescriptionProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogDescription" {...props}></div>)
-  const mockAlertDialogFooter = vi.fn((props: { children?: React.ReactNode }) => <div data-testid="mock-alertDialogFooter" {...props}></div>)
-  const mockAlertDialogCancel = vi.fn((props: AlertDialogCancelProps & { children?: React.ReactNode }) => <button data-testid="mock-alertDialogCancel" {...props}></button>)
-  const mockAlertDialogAction = vi.fn((props: AlertDialogActionProps & { children?: React.ReactNode }) => <button data-testid="mock-alertDialogAction" {...props}></button>)
+  const mockAlertDialog = vi.fn((props: AlertDialogProps) => <div data-testid="mock-alertDialog"> { props.children } </div>);
+  const mockAlertDialogTrigger = vi.fn((props: AlertDialogTriggerProps & { children?: React.ReactNode }) => <> { props.children } </>);
+  const mockAlertDialogContent = vi.fn((props: AlertDialogContentProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogContent" {...props}> { props.children } </div>);
+  const mockAlertDialogHeader = vi.fn((props: { children?: React.ReactNode }) => <div data-testid="mock-alertDialogHeader" {...props}> { props.children } </div>);
+  const mockAlertDialogTitle = vi.fn((props: AlertDialogTitleProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogTitle" {...props}></div>);
+  const mockAlertDialogDescription = vi.fn((props: AlertDialogDescriptionProps & { children?: React.ReactNode }) => <div data-testid="mock-alertDialogDescription" {...props}></div>);
+  const mockAlertDialogFooter = vi.fn((props: { children?: React.ReactNode }) => <div data-testid="mock-alertDialogFooter" {...props}>{ props.children }</div>);
+  const mockAlertDialogCancel = vi.fn((props: AlertDialogCancelProps & React.RefAttributes<HTMLButtonElement>) => <> { props.children } </>);
+  const mockAlertDialogAction = vi.fn((props: AlertDialogActionProps & React.RefAttributes<HTMLButtonElement>) => <> { props.children } </>);
   
   return { 
     AlertDialog: mockAlertDialog,
@@ -157,8 +157,8 @@ describe("CustomAlertDialog", () => {
         title = { title }
         description = { description }></CustomAlertDialog>);
 
-      const customButtons = screen.getAllByTestId("mock-customButton");
-      const cancelButton = customButtons[0];
+      const customActionButtons = screen.getAllByTestId("mock-customButton");
+      const cancelButton = customActionButtons[0];
 
       fireEvent.click(cancelButton);
 

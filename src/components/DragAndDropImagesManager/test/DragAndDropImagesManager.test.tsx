@@ -2,9 +2,8 @@ import React from 'react'
 import { describe, it, vi, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import DragAndDropImagesManager from '../DragAndDropImagesManager'
-import DragAndDropContext from '../DragAndDropContext'
+import DragAndDropContext from '../context/DragAndDropContext'
 
-// Mock the hooks to return predictable functions and data
 vi.mock('../hooks/useDragAndDropUI', () => {
   const onDragStart = vi.fn();
   const onDragEnd = vi.fn();
@@ -43,7 +42,7 @@ const GalleryMock = ({ images }: { images?: Array<ImagesData> }) => {
       <div data-testid="imagesCount">{ images ? images.length : 0 }</div>
       <div data-testid="selectedImagesCount">{ context.selectedImagesIds ? Array.from(context.selectedImagesIds).length : 0 }</div>
       <button data-testid="buttonOnDragStart" onClick={() => context.onDragStart && context.onDragStart({} as React.DragEvent<HTMLDivElement>)} />
-      <button data-testid="buttonOnDrop" onClick={() => context.onDrop && context.onDrop(document.createElement('div'))} />
+      <button data-testid="buttonOnDrop" onClick={() => context.onDrop && context.onDrop({} as React.DragEvent<HTMLDivElement>)} />
       <button data-testid="buttonOnSelectAll" onClick={() => context.onSelectAllImages && context.onSelectAllImages()} />
     </div>
   );

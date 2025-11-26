@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi, describe, it, expect } from 'vitest';
 import Gallery from '../Gallery';
-import DragAndDropContext from '../../DragAndDropImagesManager/DragAndDropContext';
+import DragAndDropContext from '../../DragAndDropImagesManager/context/DragAndDropContext';
 import type { ImageItemProps } from '@/components/ImageItem/ImageItem.d';
 import type { CustomContextualMenuProps } from '@/components/CustomContextualMenu/CustomContextualMenu.d';
 

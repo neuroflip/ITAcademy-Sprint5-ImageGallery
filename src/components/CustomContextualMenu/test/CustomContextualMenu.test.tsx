@@ -3,11 +3,11 @@ import { describe, it, vi, expect, afterEach } from "vitest";
 import { act, render, screen } from '@testing-library/react'
 
 vi.mock("@/components/ui/context-menu", () => {
-  const mockContextMenu = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenu" {...props}></div>)
-  const mockContextMenuTrigger = vi.fn((props: ContextMenuTriggerProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuTrigger" {...props}></div>)
-  const mockContextMenuContent = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuContent" {...props}></div>)
-  const mockContextMenuItem = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuItem" {...props}></div>)
-  const mockContextMenuShortcut = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuShortcut" {...props}></div>)
+  const mockContextMenu = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenu">{ props.children }</div>)
+  const mockContextMenuTrigger = vi.fn((props: ContextMenuTriggerProps & { children?: React.ReactNode }) => <> { props.children } </>)
+  const mockContextMenuContent = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuContent" {...props}>{ props.children }</div>)
+  const mockContextMenuItem = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuItem">{ props.children }</div>)
+  const mockContextMenuShortcut = vi.fn((props: ContextMenuProps & { children?: React.ReactNode }) => <div data-testid="mock-contextMenuShortcut" {...props}>{ props.children }</div>)
 
   return { 
     ContextMenu: mockContextMenu,
@@ -28,7 +28,7 @@ vi.mock("@/components/CustomAlertDialog/CustomAlertDialog", () => {
     confirmCallback: () => void,
     cancelCallback: () => void,
     children?: React.ReactNode
-  }) => <div data-testid="mock-customAlertDialog" {...props}></div>)
+  }) => <div data-testid="mock-customAlertDialog"> { props.children } </div>)
 
   return { default: mockCustomAlertDialog }
 });
