@@ -54,6 +54,7 @@ const onDragEndMock = vi.fn();
 const onReorderMock = vi.fn();
 const onDragDropMock = vi.fn();
 const setDataMock = vi.fn();
+const getDataMock = vi.fn().mockReturnValue("10");
 
 const contextValue: DragAndDropContextProps = {
   selectedImagesIds: new Set(),
@@ -146,5 +147,21 @@ describe("ImageItem", () => {
       expect(onDragEndMock).toHaveBeenCalled();
     });
 
+    it("calls to drag drop functionality when the image is finally dropped", () => {
+      render(<DragAndDropContext.Provider value={contextValue}>
+          <ImageItem imageData={imageData} isFeatured={false} isSelected={false} />
+        </DragAndDropContext.Provider>);
+
+      const imageContainerItem = screen.getByTestId("imageContainer");
+
+      fireEvent.drop(imageContainerItem, {
+        dataTransfer: {
+          getData: getDataMock
+        }
+      });
+
+      expect(onDragDropMock).toHaveBeenCalled();
+      expect(onReorderMock).toHaveBeenCalledWith(10, 10);
+    });
   });
 });
