@@ -1,9 +1,6 @@
 import { describe, it, vi, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import CustomButton from "@/components/CustomButton/CustomButton";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import CustomAlertDialog from "@/components/CustomAlertDialog/CustomAlertDialog";
-import { getContainerClassName } from "../helpers/utils";
-import { alertDialogDescription, alertDialogTitle } from "../ImageItem.d";
 import DragAndDropContext from "@/components/DragAndDropImagesManager/context/DragAndDropContext";
 import type { DragAndDropContextProps } from "@/components/DragAndDropImagesManager/context/DragAndDropContext.d";
 import ImageItem from "../ImageItem";
@@ -38,8 +35,6 @@ vi.mock("@/components/CustomAlertDialog/CustomAlertDialog", () => {
   return { default: mockCustomAlertDialog }
 });
 
-import CustomAlertDialog from "@/components/CustomAlertDialog/CustomAlertDialog";
-
 vi.mock("../helpers/utils", () => {
   return {
     getContainerClassName: vi.fn().mockReturnValue("containerClassName")
@@ -53,24 +48,29 @@ vi.mock("../ImageItem.d", () => {
   }
 });
 
+const onSelectMock = vi.fn();
+const onDragStartMock = vi.fn();
+const setDataMock = vi.fn();
+
+const contextValue: DragAndDropContextProps = {
+  selectedImagesIds: new Set(),
+  onDragStart: onDragStartMock,
+  onDragEnd: vi.fn(),
+  onDragLeave: vi.fn(),
+  onDragOver: vi.fn(),
+  onDrop: vi.fn(),
+  onReorderImage: vi.fn(),
+  onSelectImage: onSelectMock,
+  onDeleteImage: vi.fn(),
+  onSelectAllImages: vi.fn(),
+  onDeselectAllImages: vi.fn(),
+  onDeleteSelectedImages: vi.fn()
+};
+
+
 describe("ImageItem", () => {
   describe("ImageItem rendering", () => {
     it("renders the image item container and an image", () => {
-      const contextValue: DragAndDropContextProps = {
-        selectedImagesIds: new Set(),
-        onDragStart: vi.fn(),
-        onDragEnd: vi.fn(),
-        onDragLeave: vi.fn(),
-        onDragOver: vi.fn(),
-        onDrop: vi.fn(),
-        onReorderImage: vi.fn(),
-        onSelectImage: vi.fn(),
-        onDeleteImage: vi.fn(),
-        onSelectAllImages: vi.fn(),
-        onDeselectAllImages: vi.fn(),
-        onDeleteSelectedImages: vi.fn()
-      };
-
       render(<DragAndDropContext.Provider value={contextValue}>
           <ImageItem imageData={imageData} isFeatured={false} isSelected={false} />
         </DragAndDropContext.Provider>);
@@ -100,5 +100,35 @@ describe("ImageItem", () => {
         cancelCallback: expect.any(Function)
       }));
     });
+  });
+  describe("ImageItem drag and drop management", () => {
+    it("calls to select functionality when the image is clicked", () => {
+      render(<DragAndDropContext.Provider value={contextValue}>
+          <ImageItem imageData={imageData} isFeatured={false} isSelected={false} />
+        </DragAndDropContext.Provider>);
+
+      const imageContainerItem = screen.getByTestId("imageContainer");
+
+      fireEvent.click(imageContainerItem);
+
+      expect(onSelectMock).toHaveBeenCalled();
+    });
+
+    it("calls to drag start functionality when the image is dragged", () => {
+      render(<DragAndDropContext.Provider value={contextValue}>
+          <ImageItem imageData={imageData} isFeatured={false} isSelected={false} />
+        </DragAndDropContext.Provider>);
+
+      const imageContainerItem = screen.getByTestId("imageContainer");
+
+      fireEvent.dragStart(imageContainerItem,{
+        dataTransfer: {
+          setData: setDataMock
+        }
+      });
+
+      expect(onDragStartMock).toHaveBeenCalled();
+    });
+
   });
 });
