@@ -50,16 +50,19 @@ vi.mock("../ImageItem.d", () => {
 
 const onSelectMock = vi.fn();
 const onDragStartMock = vi.fn();
+const onDragEndMock = vi.fn();
+const onReorderMock = vi.fn();
+const onDragDropMock = vi.fn();
 const setDataMock = vi.fn();
 
 const contextValue: DragAndDropContextProps = {
   selectedImagesIds: new Set(),
   onDragStart: onDragStartMock,
-  onDragEnd: vi.fn(),
+  onDragEnd: onDragEndMock,
   onDragLeave: vi.fn(),
   onDragOver: vi.fn(),
-  onDrop: vi.fn(),
-  onReorderImage: vi.fn(),
+  onDrop: onDragDropMock,
+  onReorderImage: onReorderMock,
   onSelectImage: onSelectMock,
   onDeleteImage: vi.fn(),
   onSelectAllImages: vi.fn(),
@@ -128,7 +131,19 @@ describe("ImageItem", () => {
       });
 
       expect(onDragStartMock).toHaveBeenCalled();
+      expect(setDataMock).toHaveBeenCalledWith("draggedElementId", "10");
     });
 
+    it("calls to drag end functionality when the image is finally dragged", () => {
+      render(<DragAndDropContext.Provider value={contextValue}>
+          <ImageItem imageData={imageData} isFeatured={false} isSelected={false} />
+        </DragAndDropContext.Provider>);
+
+      const imageContainerItem = screen.getByTestId("imageContainer");
+
+      fireEvent.dragEnd(imageContainerItem);
+
+      expect(onDragEndMock).toHaveBeenCalled();
+    });
   });
 });
