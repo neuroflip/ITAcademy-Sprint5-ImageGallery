@@ -16,12 +16,12 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
   const { onDragStart, onDragEnd, onDragOver, onDragLeave, onDrop, onReorderImage, onSelectImage, onDeleteImage } = React.useContext(DragAndDropContext);
   const trigglerButton = () => <CustomButton size="icon-sm" className={ DELETEBUTTON_CLASS } text="🗑"/>
 
-  return <div data-image={ imageData.id.toString() }
+  return <div data-image={ imageData.id.toString() } data-testid="imageContainer"
     className={ getContainerClassName(isSelected, isFeatured) } 
     onClick={ () => { onSelectImage(imageData.id) } } 
     onDrop={ (event: React.DragEvent<HTMLDivElement>) => {
         onDrop(event); 
-        onReorderImage(Number(event.dataTransfer.getData('text')), imageData.id);
+        onReorderImage(Number(event.dataTransfer.getData('draggedElementId')), imageData.id);
       }
     }
     onDragOver={ (event: React.DragEvent<HTMLDivElement>) => {
@@ -30,7 +30,7 @@ const ImageItem = ({ imageData, isFeatured, isSelected }: ImageItemProps) => {
       }
     }
     onDragStart={ (event: React.DragEvent<HTMLDivElement>) => {
-        event.dataTransfer.setData("text", (event.target as HTMLDivElement).dataset.image || '');
+        event.dataTransfer.setData("draggedElementId", (event.target as HTMLDivElement).dataset.image || '');
         onDragStart(event);
       }
     }

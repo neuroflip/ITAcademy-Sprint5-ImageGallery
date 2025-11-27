@@ -12,7 +12,6 @@ describe('useDragAndDropUI', () => {
 
     render(<div data-testid="draggableElement" data-image="10"></div>);
     const element = screen.getByTestId("draggableElement") as HTMLDivElement;
-//    const dataTransfer = { setData: vi.fn() } as unknown as DataTransfer;
     const dragEvent = { target: element } as unknown as React.DragEvent<HTMLDivElement>;
 
     onDragStart(dragEvent);
