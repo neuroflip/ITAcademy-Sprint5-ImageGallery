@@ -1,5 +1,5 @@
 import { describe, it, vi, expect } from "vitest";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import CustomAlertDialog from "@/components/CustomAlertDialog/CustomAlertDialog";
 import DragAndDropContext from "@/components/DragAndDropImagesManager/context/DragAndDropContext";
 import type { DragAndDropContextProps } from "@/components/DragAndDropImagesManager/context/DragAndDropContext.d";
@@ -145,5 +145,6 @@ describe("ImageItem", () => {
 
       expect(onDragEndMock).toHaveBeenCalled();
     });
+
   });
 });
