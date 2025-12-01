@@ -164,6 +164,7 @@ describe("ImageItem", () => {
 
       expect(onDragDropMock).toHaveBeenCalled();
       expect(onReorderMock).toHaveBeenCalledWith(10, 10);
+      expect(getDataMock).toHaveBeenCalledWith('draggedElementId')
     });
 
     it("calls to drag over functionality when the image is dragging", () => {
